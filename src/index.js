@@ -1,12 +1,9 @@
 import React, { useState, Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
-import iconSearch from "./assets/icon-search.png";
-import iconSettings from "./assets/icon-settings.png";
 import iconUser from "./assets/icon-user.png";
 import iconStore from "./assets/icon-store.png";
 import iconExplore from "./assets/icon-explore.png";
-import iconEllipsis from "./assets/icon-ellipsis.png";
 import coverRatchet from "./assets/cover-ratchet.jpg";
 import coverDestruction from "./assets/cover-destruction.jpg";
 import coverSpider from "./assets/cover-spider.jpg";
@@ -18,6 +15,68 @@ import bgSpider from "./assets/bg-spider.jpg";
 import bgSackboy from "./assets/bg-sackboy.jpg";
 import bgAstro from "./assets/bg-astro.jpg";
 import logoAstro from "./assets/logo-astro.png";
+import logoSackboy from "./assets/logo-sackboy.png";
+import logoDestruction from "./assets/logo-destruction.png";
+
+const Game = ({ logo, text, title, cover, tag, price }) => {
+  return (
+    <>
+      <div className="ps5-content-left">
+        <img className="ps5-content-logo" src={logo} alt="" />
+        <p className="ps5-content-text">{text}</p>
+        <div className="ps5-content-options">
+          <a href="#2" className="ps5-button">
+            Play
+          </a>
+          <a href="#3" className="ps5-button ps5-button-mono">
+            <i class="material-icons">more_horiz</i>
+          </a>
+        </div>
+      </div>
+
+      <a href="#1" className="ps5-content-right">
+        <img src={cover} className="ps5-content-cover" alt="" />
+        <div className="ps5-content-labels">
+          <span className="ps5-content-tag">{tag}</span>
+          <p className="ps5-content-text">{title}</p>
+          <p className="ps5-content-price">{price}</p>
+        </div>
+      </a>
+    </>
+  );
+};
+
+const Page1 = () => {
+  return (
+    <div className="ps5-content-left">
+      <p className="ps5-content-text">Page 1</p>
+      <div className="ps5-content-options">
+        <a href="#2" className="ps5-button">
+          Discover
+        </a>
+        {/* <a href="#3" className="ps5-button ps5-button-mono">
+          <i class="material-icons">more_horiz</i>
+        </a> */}
+      </div>
+    </div>
+  );
+};
+
+const Page2 = () => {
+  return (
+    <div className="ps5-content-left">
+      <p className="ps5-content-text">Page 2</p>
+      <div className="ps5-content-options">
+        <a href="#2" className="ps5-button">
+          Discover 2
+        </a>
+        {/* <a href="#3" className="ps5-button ps5-button-mono">
+        <i class="material-icons">more_horiz</i>
+      </a> */}
+      </div>
+    </div>
+  );
+};
 
 const menu = [
   {
@@ -25,30 +84,66 @@ const menu = [
     icon: iconStore,
     label: "PlayStation Store",
     bg: bgRatchet,
+    content: <Page1 />,
   },
   {
     url: "#explore",
     icon: iconExplore,
     label: "Explore",
     bg: bgSpider,
+    content: <Page2 />,
   },
   {
     url: "#astros-playroom",
     cover: coverAstro,
     label: "Astro's Playroom",
     bg: bgAstro,
+    logo: logoAstro,
+    content: (
+      <Game
+        logo={logoAstro}
+        text="Discover the future of play with intergalactic platforming hero -
+        ASTRO!"
+        title="Astro's Playroom"
+        cover={coverAstro}
+        tag="Full Game"
+        price="Free"
+      />
+    ),
   },
   {
     url: "#destruction-allstars",
     cover: coverDestruction,
     label: "Destruction Allstars",
     bg: bgDestruction,
+    logo: logoDestruction,
+    content: (
+      <Game
+        logo={logoDestruction}
+        text="Lorem"
+        title="Destruction Allstars"
+        cover={coverDestruction}
+        tag="Full Game"
+        price="€ 39,99"
+      />
+    ),
   },
   {
     url: "#sackboy-a-big-adventure",
     cover: coverSackboy,
     label: "Sackboy: A Big Adventure",
     bg: bgSackboy,
+    logo: logoSackboy,
+    content: (
+      <Game
+        logo={logoSackboy}
+        text="Ipsum"
+        title="Sackboy: A Big Adventure"
+        cover={coverSackboy}
+        tag="Full Game"
+        price="€ 19,99"
+      />
+    ),
   },
 ];
 
@@ -118,15 +213,31 @@ class Page extends Component {
 
           <ul>
             {[
-              { icon: iconSearch, label: "search" },
-              { icon: iconSettings, label: "settings" },
-              { icon: iconUser, label: "user" },
-              { label: this.state.time },
+              {
+                label: "search",
+                content: <i class="material-icons">search</i>,
+              },
+              {
+                label: "settings",
+                content: <i class="material-icons">settings</i>,
+              },
+              {
+                label: "user",
+                content: <img src={iconUser} alt="" />,
+              },
+              {
+                label: "clock",
+                content: this.state.time,
+              },
             ].map((item, i) => {
               return (
                 <li key={i}>
-                  <a href={"#" + item.label} title={item.label}>
-                    {item.icon ? <img src={item.icon} alt="" /> : item.label}
+                  <a
+                    href={"#" + item.label}
+                    title={item.label}
+                    // className="ps5-button ps5-button-mono"
+                  >
+                    {item.content}
                   </a>
                 </li>
               );
@@ -154,19 +265,16 @@ class Page extends Component {
         </ul>
 
         <div className="ps5-content">
-          <div className="ps5-content-left">
-            <img className="ps5-content-logo" src={logoAstro} alt="" />
-            <p className="ps5-content-text">
-              Discover the future of play with intergalactic platforming hero -
-              ASTRO!
-            </p>
-            <div className="ps5-content-options">
-              <button className="ps5-button">Play</button>
-              <button className="ps5-button ps5-button-mono">
-                <img src={iconEllipsis} alt="" />
-              </button>
-            </div>
-          </div>
+          {menu.map((item, i) => {
+            return (
+              <div
+                key={i}
+                className={"ps5-content-item" + (active === i ? " active" : "")}
+              >
+                {item.content}
+              </div>
+            );
+          })}
         </div>
       </div>
     );

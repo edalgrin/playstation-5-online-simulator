@@ -12,6 +12,7 @@
 
 body {
   font-weight: 200;
+  font-size: 1.2rem;
   color: white;
   background-color: black;
 }
@@ -37,7 +38,7 @@ a {
 
 /**/
 
-$animation-time: 300ms;
+$animation-time: 200ms;
 
 /**/
 
@@ -50,8 +51,11 @@ $animation-time: 300ms;
   background-position: center;
   background-size: cover;
   /**/
-  transition: $animation-time ease-in-out;
+  transition: opacity $animation-time ease-in-out,
+    transform $animation-time ease-in-out;
   opacity: 0;
+  transform: translateX(-5%);
+  // transition-delay: $animation-time;
 
   &:before {
     content: "";
@@ -70,7 +74,14 @@ $animation-time: 300ms;
   }
 
   &.active {
+    // z-index: 1;
+    // transition-delay: 0ms;
     opacity: 1;
+    transform: translateX(0%);
+
+    ~ .ps5-bg-item {
+      transform: translateX(5%);
+    }
   }
 }
 
@@ -124,6 +135,17 @@ $animation-time: 300ms;
     opacity: 0;
     transition: $animation-time ease-in-out;
     // will-change: opacity;
+
+    background: linear-gradient(
+      -45deg,
+      transparent 30%,
+      rgba(white, 0.4),
+      transparent 70%
+    );
+    background-size: 600%;
+    animation-duration: 7s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
   }
 
   img {
@@ -137,7 +159,7 @@ $animation-time: 300ms;
     margin: 0 0 1rem 0.5rem;
     white-space: nowrap;
     font-weight: inherit;
-    font-size: 1.2rem;
+    font-size: inherit;
     /**/
     transition: $animation-time ease-in-out;
     opacity: 0;
@@ -152,14 +174,28 @@ $animation-time: 300ms;
     h3 {
       opacity: 1;
     }
+
+    &:before {
+      animation-name: gradient;
+    }
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 100%;
+    }
+    30% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 0%;
+    }
   }
 }
 
 .ps5-content {
-  position: absolute;
-  bottom: 4rem;
-  font-size: 1.2rem;
-  margin: 0 7rem;
+  position: relative;
+  margin: 10rem 7rem 0;
 
   .ps5-content-left {
     width: 480px;
@@ -168,16 +204,84 @@ $animation-time: 300ms;
       width: 400px;
     }
 
-    .ps5-content-text {
-      margin-top: 1rem;
-    }
-
     .ps5-content-options {
       display: flex;
       align-items: center;
       gap: 0.7rem;
       margin-top: 2rem;
     }
+  }
+
+  .ps5-content-text {
+    margin: 1rem 0 0;
+  }
+}
+
+.ps5-content-right {
+  position: relative;
+
+  .ps5-content-cover {
+    width: 300px;
+  }
+
+  .ps5-content-labels {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to bottom, transparent, rgba(black, 1));
+
+    .ps5-content-tag {
+      display: inline-block;
+      border: 1px solid;
+      padding-inline: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+
+    .ps5-content-price {
+      margin: 1rem 0 0;
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+
+    .ps5-content-text {
+      display: none;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .ps5-content-text {
+      display: block;
+    }
+  }
+}
+
+.ps5-content-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /**/
+  transition: opacity 0ms, transform 0ms;
+  opacity: 0;
+  transform: translateY(5%);
+  transition-delay: 0ms, $animation-time;
+
+  &.active {
+    z-index: 1;
+    // transition-delay: 0ms;
+    transition: opacity $animation-time ease-in-out,
+      transform $animation-time ease-in-out;
+    transition-delay: $animation-time, $animation-time;
+    opacity: 1;
+    transform: translateX(0%);
   }
 }
 
@@ -190,6 +294,7 @@ $animation-time: 300ms;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: $animation-time ease-in-out;
 
   &.ps5-button-mono {
     width: 50px;
@@ -197,5 +302,11 @@ $animation-time: 300ms;
 
   img {
     width: 25px;
+  }
+
+  &:focus,
+  &:hover {
+    color: black;
+    background-color: white;
   }
 }
