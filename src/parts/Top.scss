@@ -1,0 +1,35 @@
+@import "../variables.scss";
+
+.ps5-top {
+  font-size: 1.5rem;
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  ul {
+    gap: $margin-x;
+
+    img {
+      width: 25px;
+    }
+
+    i {
+      font-size: 2rem;
+    }
+  }
+}
+
+.ps5-top-btn {
+  padding: 5px;
+  border-radius: 4px;
+  vertical-align: middle;
+  opacity: 0.5;
+  transform: opacity $animation-time ease-in-out;
+  // will-change: opacity, font-weight;
+
+  &.active {
+    opacity: 1;
+    font-weight: 400;
+  }
+}

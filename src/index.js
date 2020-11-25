@@ -1,6 +1,13 @@
 import React, { useState, Component } from "react";
 import ReactDOM from "react-dom";
+import Background from "./parts/Background.js";
+import Top from "./parts/Top.js";
+import Menu from "./parts/Menu.js";
+import Preview from "./parts/Preview.js";
+import Disk from "./parts/Disk.js";
 import "./index.scss";
+
+// const iconUser = "http://eduardoallegrini.com/static/media/logo.9ba6744a.svg";
 import iconUser from "./assets/icon-user.png";
 import iconStore from "./assets/icon-store.png";
 import iconExplore from "./assets/icon-explore.png";
@@ -18,80 +25,22 @@ import logoAstro from "./assets/logo-astro.png";
 import logoSackboy from "./assets/logo-sackboy.png";
 import logoDestruction from "./assets/logo-destruction.png";
 
-const Game = ({ logo, text, title, cover, tag, price }) => {
-  return (
-    <>
-      <div className="ps5-content-left">
-        <img className="ps5-content-logo" src={logo} alt="" />
-        <p className="ps5-content-text">{text}</p>
-        <div className="ps5-content-options">
-          <a href="#2" className="ps5-button">
-            Play
-          </a>
-          <a href="#3" className="ps5-button ps5-button-mono">
-            <i class="material-icons">more_horiz</i>
-          </a>
-        </div>
-      </div>
-
-      <a href="#1" className="ps5-content-right">
-        <img src={cover} className="ps5-content-cover" alt="" />
-        <div className="ps5-content-labels">
-          <span className="ps5-content-tag">{tag}</span>
-          <p className="ps5-content-text">{title}</p>
-          <p className="ps5-content-price">{price}</p>
-        </div>
-      </a>
-    </>
-  );
-};
-
-const Page1 = () => {
-  return (
-    <div className="ps5-content-left">
-      <p className="ps5-content-text">Page 1</p>
-      <div className="ps5-content-options">
-        <a href="#2" className="ps5-button">
-          Discover
-        </a>
-        {/* <a href="#3" className="ps5-button ps5-button-mono">
-          <i class="material-icons">more_horiz</i>
-        </a> */}
-      </div>
-    </div>
-  );
-};
-
-const Page2 = () => {
-  return (
-    <div className="ps5-content-left">
-      <p className="ps5-content-text">Page 2</p>
-      <div className="ps5-content-options">
-        <a href="#2" className="ps5-button">
-          Discover 2
-        </a>
-        {/* <a href="#3" className="ps5-button ps5-button-mono">
-        <i class="material-icons">more_horiz</i>
-      </a> */}
-      </div>
-    </div>
-  );
-};
-
-const menu = [
+const games = [
   {
     url: "#playstation-store",
     icon: iconStore,
     label: "PlayStation Store",
     bg: bgRatchet,
-    content: <Page1 />,
+    title: "Welcome to the next generation",
+    text:
+      "From the freshnest releases to curated collection, there's something for everyone.",
+    list: true,
   },
   {
     url: "#explore",
     icon: iconExplore,
     label: "Explore",
     bg: bgSpider,
-    content: <Page2 />,
   },
   {
     url: "#astros-playroom",
@@ -99,17 +48,11 @@ const menu = [
     label: "Astro's Playroom",
     bg: bgAstro,
     logo: logoAstro,
-    content: (
-      <Game
-        logo={logoAstro}
-        text="Discover the future of play with intergalactic platforming hero -
-        ASTRO!"
-        title="Astro's Playroom"
-        cover={coverAstro}
-        tag="Full Game"
-        price="Free"
-      />
-    ),
+    btn: "Play",
+    text:
+      "Discover the future of play with intergalactic platforming hero - ASTRO!",
+    tag: "Full Game",
+    price: "Free",
   },
   {
     url: "#destruction-allstars",
@@ -117,16 +60,11 @@ const menu = [
     label: "Destruction Allstars",
     bg: bgDestruction,
     logo: logoDestruction,
-    content: (
-      <Game
-        logo={logoDestruction}
-        text="Lorem"
-        title="Destruction Allstars"
-        cover={coverDestruction}
-        tag="Full Game"
-        price="€ 39,99"
-      />
-    ),
+    btn: "Play",
+    text:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim officiis",
+    tag: "Full Game",
+    price: "€ 39,99",
   },
   {
     url: "#sackboy-a-big-adventure",
@@ -134,16 +72,39 @@ const menu = [
     label: "Sackboy: A Big Adventure",
     bg: bgSackboy,
     logo: logoSackboy,
-    content: (
-      <Game
-        logo={logoSackboy}
-        text="Ipsum"
-        title="Sackboy: A Big Adventure"
-        cover={coverSackboy}
-        tag="Full Game"
-        price="€ 19,99"
-      />
-    ),
+    btn: "Play",
+    text:
+      "Dolores hic deleniti ut natus tempora earum, provident debitis obcaecati et est",
+    tag: "Full Game",
+    price: "€ 19,99",
+  },
+];
+
+const topLeftMenu = [
+  { label: "Games", url: "#games" },
+  { label: "Media", url: "#media" },
+];
+
+const topRightMenu = [
+  {
+    label: "Search",
+    url: "#search",
+    content: <i className="material-icons">search</i>,
+  },
+  {
+    label: "Settings",
+    url: "#settings",
+    content: <i className="material-icons">settings</i>,
+  },
+  {
+    label: "User",
+    url: "#user",
+    content: <img src={iconUser} alt="" />,
+  },
+  {
+    label: "clock",
+    url: "#clock",
+    content: "clock",
   },
 ];
 
@@ -151,130 +112,58 @@ class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: "--:--",
       active: 2,
+      top: 0,
     };
   }
 
-  componentDidMount() {
-    this.tick();
-    this.clock = setInterval(() => this.tick(), 60000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.clock);
-  }
-
-  tick() {
-    let today = new Date();
-    let minutes = today.getMinutes();
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-    this.setState({
-      time: today.getHours() + ":" + minutes,
-    });
-  }
-
   render() {
+    let top = this.state.top;
+    let content = games;
     let active = this.state.active;
 
     return (
       <div>
-        <div>
-          {menu.map((item, i) => {
-            return (
-              <div
-                key={i}
-                className="ps5-bg-item"
-                style={{ backgroundImage: "url(" + item.bg + ")" }}
-                className={"ps5-bg-item" + (active === i ? " active" : "")}
-              ></div>
-            );
+        <Background
+          active={active}
+          backgrounds={content.map((item) => {
+            return item.bg;
           })}
+        />
+
+        <div className="ps5-hero">
+          <Top
+            top={top}
+            topRightMenu={topRightMenu}
+            topLeftMenu={topLeftMenu}
+            handleClick={(e) => this.setState({ top: e })}
+          />
+
+          <Menu
+            active={active}
+            content={content}
+            handleClick={(e) => this.setState({ active: e })}
+          />
+
+          <Preview active={active} content={content} />
         </div>
-
-        <div className="ps5-top">
-          <ul>
-            {["Games", "Media"].map((item, i) => {
-              return (
-                <li key={i}>
-                  <a
-                    href={"#" + item}
-                    className={active === i ? "active" : ""}
-                    title={item}
-                  >
-                    {item}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-
-          <ul>
-            {[
-              {
-                label: "search",
-                content: <i class="material-icons">search</i>,
-              },
-              {
-                label: "settings",
-                content: <i class="material-icons">settings</i>,
-              },
-              {
-                label: "user",
-                content: <img src={iconUser} alt="" />,
-              },
-              {
-                label: "clock",
-                content: this.state.time,
-              },
-            ].map((item, i) => {
-              return (
-                <li key={i}>
-                  <a
-                    href={"#" + item.label}
-                    title={item.label}
-                    // className="ps5-button ps5-button-mono"
-                  >
-                    {item.content}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-
-        <ul className="ps5-menu" style={{ marginLeft: 120 - active * 80 }}>
-          {menu.map((item, i) => {
-            return (
-              <li key={i} className="">
-                <a
-                  href={item.url}
-                  className={"ps5-menu-item" + (active === i ? " active" : "")}
-                  title={item.label}
-                  style={{ backgroundImage: "url(" + item.cover + ")" }}
-                  onClick={() => this.setState({ active: i })}
-                >
-                  {item.icon && <img src={item.icon} alt="" />}
-                  <h3>{item.label}</h3>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
 
         <div className="ps5-content">
-          {menu.map((item, i) => {
-            return (
-              <div
-                key={i}
-                className={"ps5-content-item" + (active === i ? " active" : "")}
-              >
-                {item.content}
-              </div>
-            );
-          })}
+          <h3>List 1</h3>
+          <div className="ps5-list">
+            {content.map((item, i) => {
+              return (
+                <Disk
+                  key={i}
+                  url={item.url}
+                  tag={item.tag}
+                  label={item.label}
+                  price={item.price}
+                  cover={item.cover}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     );

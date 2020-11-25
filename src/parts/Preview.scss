@@ -1,0 +1,35 @@
+@import "../variables.scss";
+
+.ps5-preview {
+  padding: $margin-x (2 * $margin-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  animation-name: animation-load;
+  animation-duration: $animation-time;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: $animation-time;
+  transform: translateY(5%);
+  opacity: 0;
+
+  @keyframes animation-load {
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  p {
+    max-width: 480px;
+  }
+
+  img {
+    max-width: 400px;
+  }
+}

@@ -1,0 +1,49 @@
+@import "../variables.scss";
+
+.ps5-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  .ps5-bg-item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center;
+    background-size: cover;
+    /**/
+    transition: opacity $animation-time ease-in-out,
+      transform $animation-time ease-in-out;
+    opacity: 0;
+    transform: translateX(-5%);
+
+    &.active {
+      opacity: 1;
+      transform: translateX(0%);
+
+      ~ .ps5-bg-item {
+        transform: translateX(5%);
+      }
+    }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+      35deg,
+      rgba(0, 0, 0, 0.7) 30%,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.7) 80%
+    );
+  }
+}

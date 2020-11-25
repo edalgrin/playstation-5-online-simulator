@@ -1,0 +1,49 @@
+@import "../variables.scss";
+
+.ps5-menu {
+  transition: transform $animation-time ease-in-out;
+  gap: 7px;
+
+  .ps5-menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background-color: rgba(black, 0.7);
+    background-size: cover;
+    background-position: center;
+    transform-origin: top;
+    transition: width $animation-time ease-in-out,
+      height $animation-time ease-in-out;
+    width: 75px;
+    height: 75px;
+    will-change: width, height;
+
+    img {
+      width: 50%;
+    }
+
+    span {
+      position: absolute;
+      bottom: 1.2rem;
+      left: calc(100% + 0.7rem);
+      white-space: nowrap;
+      font-weight: 300;
+      font-size: 1.5rem;
+      transition: opacity $animation-time ease-in-out;
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    &.active {
+      width: 130px;
+      height: 130px;
+
+      span {
+        transition-delay: $animation-time;
+        opacity: 1;
+      }
+    }
+  }
+}
