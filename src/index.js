@@ -5,6 +5,7 @@ import Top from "./parts/Top.js";
 import Menu from "./parts/Menu.js";
 import Preview from "./parts/Preview.js";
 import List from "./parts/List.js";
+import Canvas from "./parts/Canvas.js";
 import apps from "./apps.js";
 import "./index.scss";
 // const iconUser = "http://eduardoallegrini.com/static/media/logo.9ba6744a.svg";
@@ -52,6 +53,7 @@ class Page extends Component {
     this.state = {
       active: 0,
       top: 0,
+      overlay: true,
     };
   }
 
@@ -100,7 +102,7 @@ class Page extends Component {
       <>
         <Background active={active} backgrounds={backgrounds} />
 
-        <div className="ps5-page">
+        <div className={"ps5-page"}>
           <div
             className={
               "ps5-hero ps5-container" + (lists ? "" : " ps5-hero-fullscreen")
@@ -138,6 +140,24 @@ class Page extends Component {
                 );
               })}
           </div>
+        </div>
+
+        <div className={"ps5-overlay" + (this.state.overlay ? " active" : "")}>
+          <Canvas overlay={!this.state.overlay} />
+
+          <p>Click the button on your screen</p>
+
+          <a
+            href="#start"
+            id="start"
+            className="ps5-btn ps5-btn-mono ps5-btn-lg ps5-grow focus"
+            onClick={() => this.setState({ overlay: false })}
+          >
+            <i className="material-icons">power_settings_new</i>
+            <div className="ps5-shine focus"></div>
+            <div className="ps5-shine focus"></div>
+            <div className="ps5-shine focus"></div>
+          </a>
         </div>
       </>
     );

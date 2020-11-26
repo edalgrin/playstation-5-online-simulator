@@ -20,7 +20,7 @@ class Menu extends Component {
             <li key={i}>
               <Disk
                 item={item}
-                className={active === i ? "active on" : ""}
+                className={active === i ? "active focus" : ""}
                 onClick={() => this.props.handleClick(i)}
               />
             </li>
