@@ -2,13 +2,27 @@
 
 .ps5-top {
   font-size: 1.5rem;
-  padding: 2rem 3rem;
+  padding-block: 2rem;
   display: flex;
   justify-content: space-between;
   position: relative;
+  flex-wrap: wrap-reverse;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    margin-inline: -$margin-x/2;
+  }
 
   ul {
-    gap: $margin-x;
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+      gap: 2rem;
+    }
+
+    @media (min-width: 992px) {
+      gap: $margin-x;
+    }
 
     img {
       width: 25px;

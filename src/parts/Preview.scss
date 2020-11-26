@@ -1,22 +1,20 @@
 @import "../variables.scss";
 
 .ps5-preview {
-  padding: $margin-x (2 * $margin-x);
+  padding-block: $margin-x;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  animation-name: animation-load;
-  animation-duration: $animation-time;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-  animation-delay: $animation-time;
-  transform: translateY(5%);
-  opacity: 0;
 
-  @keyframes animation-load {
-    100% {
-      transform: translateY(0%);
-      opacity: 1;
+  .ps5-disk {
+    &:after {
+      border-radius: 4px;
+    }
+
+    display: none;
+
+    @media (min-width: 992px) {
+      display: block;
     }
   }
 
@@ -30,6 +28,7 @@
   }
 
   img {
+    width: 100%;
     max-width: 400px;
   }
 }

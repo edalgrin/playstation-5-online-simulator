@@ -7,15 +7,25 @@ class Disk extends Component {
   }
 
   render() {
+    const item = this.props.item;
     return (
       <a
-        href={this.props.url}
-        className="ps5-disk"
-        style={{ backgroundImage: "url(" + this.props.cover + ")" }}
+        href={item.url}
+        title={item.label}
+        className={
+          "ps5-disk " +
+          (this.props.mid ? "ps5-disk-mid " : "") +
+          (this.props.min ? "ps5-disk-min " : "") +
+          this.props.className
+        }
+        style={{ backgroundImage: "url(" + item.cover + ")" }}
+        onClick={this.props.onClick}
       >
-        <span>{this.props.tag}</span>
-        <h3>{this.props.label}</h3>
-        <p>{this.props.price}</p>
+        <div>
+          {item.tag && <span>{item.tag}</span>}
+          {item.label && <h3>{item.label}</h3>}
+          {item.price && <p>{item.price}</p>}
+        </div>
       </a>
     );
   }

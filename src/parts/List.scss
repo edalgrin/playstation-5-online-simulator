@@ -1,0 +1,27 @@
+@import "../variables.scss";
+
+.ps5-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (min-width: 576px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  &.ps5-list-shrink {
+    .ps5-disk {
+      &:before {
+        padding-bottom: 63%;
+      }
+    }
+  }
+}

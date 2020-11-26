@@ -2,52 +2,100 @@
 
 .ps5-disk {
   position: relative;
-  width: 300px;
-  height: 300px;
+  display: block;
+  width: 100%;
+  max-width: 300px;
   background-size: cover;
   background-position: center;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 1rem;
 
   &:before {
     content: "";
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(black, 1));
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 0%;
+    transition: background-size $animation-time ease-in-out;
+  }
+
+  div {
     position: absolute;
-    top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(to bottom, transparent, rgba(black, 1));
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 1rem;
+
+    > * {
+      margin: 0;
+    }
+
+    span {
+      display: inline-block;
+      border: 1px solid;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 200;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 1rem;
+    }
   }
 
-  &:after {
-    border-radius: 4px;
+  &.ps5-disk-mid {
+    &:before {
+      background-size: 100% 40%;
+    }
+
+    h3 {
+      display: none;
+    }
+
+    &:focus,
+    &:hover {
+      &:before {
+        background-size: 100% 100%;
+      }
+
+      h3 {
+        display: block;
+      }
+    }
   }
 
-  > * {
-    position: relative;
-    margin: 0;
-  }
+  &.ps5-disk-min {
+    &:before {
+      background-size: 100% 20%;
+    }
 
-  span {
-    display: inline-block;
-    border: 1px solid;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 400;
-  }
+    h3,
+    span {
+      display: none;
+    }
 
-  h3 {
-    // display: none;
-    font-size: 1.5rem;
-    font-weight: 200;
-  }
+    &:focus,
+    &:hover {
+      &:before {
+        background-size: 100% 80%;
+      }
 
-  p {
-    font-weight: 400;
-    font-size: 1rem;
+      h3,
+      span {
+        display: block;
+      }
+    }
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Disk from "./Disk.js";
 import "./Menu.scss";
 
 class Menu extends Component {
@@ -12,21 +13,16 @@ class Menu extends Component {
     return (
       <ul
         className="ps5-menu"
-        style={{ transform: "translateX(" + (120 - active * 80) + "px)" }}
+        style={{ transform: "translateX(-" + active * 80 + "px)" }}
       >
-        {this.props.content.map((item, i) => {
+        {this.props.menus.map((item, i) => {
           return (
             <li key={i}>
-              <a
-                href={item.url}
-                title={item.label}
-                className={"ps5-menu-item" + (active === i ? " active on" : "")}
-                style={{ backgroundImage: "url(" + item.cover + ")" }}
+              <Disk
+                item={item}
+                className={active === i ? "active on" : ""}
                 onClick={() => this.props.handleClick(i)}
-              >
-                {item.icon && <img src={item.icon} alt="" />}
-                <span>{item.label}</span>
-              </a>
+              />
             </li>
           );
         })}

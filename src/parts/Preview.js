@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import "./Preview.scss";
+// import { CSSTransition } from "react-transition-group";
 import Disk from "./Disk.js";
+import "./Preview.scss";
 
 class Preview extends Component {
   constructor(props) {
@@ -8,52 +9,35 @@ class Preview extends Component {
   }
 
   render() {
+    const item = this.props.preview;
+
     return (
-      <>
-        {this.props.content.map((item, i) => {
-          return (
-            this.props.active === i && (
-              <div key={i} className="ps5-preview">
-                <div>
-                  {item.logo && <img src={item.logo} alt="" />}
+      <div className="ps5-preview ps5-animate-from-bottom" key={this.props.id}>
+        <div>
+          {item.logo && <img src={item.logo} alt="" />}
 
-                  {item.title && <h2>{item.title}</h2>}
+          {item.title && <h2>{item.title}</h2>}
 
-                  {item.text && <p>{item.text}</p>}
+          {item.text && <p>{item.text}</p>}
 
-                  {item.btn && (
-                    <div className="ps5-btn-group">
-                      <a
-                        href="#play"
-                        className="ps5-btn ps5-btn-lg ps5-btn-primary"
-                      >
-                        {item.btn}
-                      </a>
+          {item.btn && (
+            <div className="ps5-btn-group">
+              <a href="#play" className="ps5-btn ps5-btn-lg ps5-btn-primary">
+                {item.btn}
+              </a>
 
-                      <a
-                        href="#more"
-                        className="ps5-btn ps5-btn-mono  ps5-btn-lg ps5-btn-primary"
-                      >
-                        <i className="material-icons">more_horiz</i>
-                      </a>
-                    </div>
-                  )}
-                </div>
+              <a
+                href="#more"
+                className="ps5-btn ps5-btn-mono  ps5-btn-lg ps5-btn-primary"
+              >
+                <i className="material-icons">more_horiz</i>
+              </a>
+            </div>
+          )}
+        </div>
 
-                {item.tag && item.label && item.price && (
-                  <Disk
-                    url={item.url}
-                    tag={item.tag}
-                    label={item.label}
-                    price={item.price}
-                    cover={item.cover}
-                  />
-                )}
-              </div>
-            )
-          );
-        })}
-      </>
+        {item.price && <Disk item={item} mid />}
+      </div>
     );
   }
 }
