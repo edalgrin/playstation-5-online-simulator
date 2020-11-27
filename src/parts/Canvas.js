@@ -13,7 +13,7 @@ const Canvas = (props) => {
 
     // Configuration, Play with these
     var config = {
-      particleNumber: 100,
+      particleNumber: 1,
       maxParticleSize: 5,
       maxSpeed: 1,
       colorVariation: 10,
@@ -167,40 +167,40 @@ const Canvas = (props) => {
     // Click listener
     /*
      */
-    document
-      .getElementById("start")
-      .addEventListener("click", function (event) {
-        var x = event.clientX,
-          y = event.clientY;
-        // cleanUpArray();
-        //   initParticles(100, x, y);
+    // document
+    //   .getElementById("start")
+    //   .addEventListener("click", function (event) {
+    //     var x = event.clientX,
+    //       y = event.clientY;
+    //     // cleanUpArray();
+    //     //   initParticles(100, x, y);
 
-        let i = 10;
+    //     let i = 10;
 
-        clearInterval(cycle);
+    //     clearInterval(cycle);
 
-        let cycleend = setInterval(function () {
-          initParticles(i, x, y);
-          if (i < 200) {
-            i = i + 10;
-            config.particleNumber = i;
-            config.maxParticleSize = i / 10;
-            config.maxSpeed = i / 20;
-            config.opacity = 0;
-            // config.colorVariation = 50 - i / 4;
-          } else {
-            clearInterval(cycleend);
-            // colorPalette.matter = [{ r: 255, g: 255, b: 255 }];
-            // config.maxParticleSize = 1000;
-            // initParticles(1, x, y);
-            // drawParticle(x, y, 100, 0);
-            // setTimeout(function () {
-            // }, 10);
-          }
+    //     let cycleend = setInterval(function () {
+    //       initParticles(i, x, y);
+    //       if (i < 200) {
+    //         i = i + 10;
+    //         config.particleNumber = i;
+    //         config.maxParticleSize = i / 10;
+    //         config.maxSpeed = i / 20;
+    //         config.opacity = 0;
+    //         // config.colorVariation = 50 - i / 4;
+    //       } else {
+    //         clearInterval(cycleend);
+    //         // colorPalette.matter = [{ r: 255, g: 255, b: 255 }];
+    //         // config.maxParticleSize = 1000;
+    //         // initParticles(1, x, y);
+    //         // drawParticle(x, y, 100, 0);
+    //         // setTimeout(function () {
+    //         // }, 10);
+    //       }
 
-          cleanUpArray();
-        }, 100);
-      });
+    //       cleanUpArray();
+    //     }, 100);
+    //   });
 
     // First Frame
     frame();
@@ -209,7 +209,7 @@ const Canvas = (props) => {
     // initParticles(config.particleNumber);
 
     let cycle = setInterval(function () {
-      initParticles(1);
+      initParticles(config.particleNumber);
 
       //   initParticles(props.overlay ? 10 : 1);
 

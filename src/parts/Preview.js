@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { CSSTransition } from "react-transition-group";
 import Disk from "./Disk.js";
 import "./Preview.scss";
 
@@ -20,10 +19,14 @@ class Preview extends Component {
 
           {item.text && <p>{item.text}</p>}
 
-          {item.btn && (
+          {item.trailer && (
             <div className="ps5-btn-group">
-              <a href="#play" className="ps5-btn ps5-btn-lg ps5-btn-primary">
-                {item.btn}
+              <a
+                href="#play"
+                className="ps5-btn ps5-btn-lg ps5-btn-primary"
+                onClick={() => this.props.onClick(item.trailer)}
+              >
+                Play
               </a>
 
               <a
@@ -36,7 +39,13 @@ class Preview extends Component {
           )}
         </div>
 
-        {item.price && <Disk item={item} mid />}
+        {item.price && (
+          <Disk
+            item={item}
+            mid
+            onClick={() => this.props.onClick(item.trailer)}
+          />
+        )}
       </div>
     );
   }

@@ -21,7 +21,7 @@ class Menu extends Component {
               <Disk
                 item={item}
                 className={active === i ? "active focus" : ""}
-                onClick={() => this.props.handleClick(i)}
+                onClick={() => this.props.onClick(i)}
               />
             </li>
           );

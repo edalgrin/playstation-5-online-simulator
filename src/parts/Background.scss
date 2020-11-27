@@ -6,6 +6,7 @@
   top: 0;
   right: 0;
   bottom: 0;
+  transform: scale(1.05);
 
   .ps5-bg-item {
     position: absolute;
@@ -16,8 +17,8 @@
     background-position: center;
     background-size: cover;
     /**/
-    transition: opacity $animation-time ease-in-out,
-      transform $animation-time ease-in-out;
+    transition: opacity $animation-time $animation-ease,
+      transform $animation-time $animation-ease;
     opacity: 0;
     transform: translateX(-5%);
 

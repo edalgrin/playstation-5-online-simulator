@@ -45,7 +45,7 @@ class Top extends Component {
                   className={
                     "ps5-top-btn" + (this.props.top === i ? " active" : "")
                   }
-                  onClick={() => this.props.handleClick(i)}
+                  onClick={() => this.props.onClickMenu(i)}
                 >
                   {item.label}
                 </a>
@@ -63,7 +63,10 @@ class Top extends Component {
                 <a
                   href={item.url}
                   title={item.label}
-                  className={clock ? "ps5-top-btn active" : "ps5-btn ps5-btn-mono"}
+                  className={
+                    clock ? "ps5-top-btn active" : "ps5-btn ps5-btn-mono"
+                  }
+                  onClick={() => this.props.onClickModal(item.url)}
                 >
                   {clock ? this.state.time : item.content}
                 </a>

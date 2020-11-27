@@ -56,7 +56,7 @@ const apps = {
     label: "Astro's Playroom",
     bg: bgAstro,
     logo: logoAstro,
-    btn: "Play",
+    trailer: "lu5VXrEqgco",
     text:
       "Discover the future of play with intergalactic platforming hero - ASTRO!",
     tag: "Full Game",
@@ -85,7 +85,7 @@ const apps = {
     label: "Destruction Allstars",
     bg: bgDestruction,
     logo: logoDestruction,
-    btn: "Play",
+    trailer: "nNO1k5NCDOk",
     text:
       " Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim officiis",
     tag: "Full Game",
@@ -97,7 +97,7 @@ const apps = {
     label: "Sackboy: A Big Adventure",
     bg: bgSackboy,
     logo: logoSackboy,
-    btn: "Play",
+    trailer: "mUwI6e-em3o",
     text:
       "Dolores hic deleniti ut natus tempora earum, provident debitis obcaecati et est",
     tag: "Full Game",

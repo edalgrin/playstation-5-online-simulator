@@ -1,18 +1,18 @@
 @import "../variables.scss";
 
 .ps5-menu {
-  transition: transform $animation-time ease-in-out;
+  transition: transform $animation-time $animation-ease;
   gap: 7px;
 
   .ps5-disk {
     border-radius: 15%;
     transform-origin: top;
-    transition: width $animation-time ease-in-out;
+    transition: width $animation-time $animation-ease;
     width: 75px;
     will-change: width;
 
     div {
-      transition: opacity $animation-time ease-in-out;
+      transition: opacity $animation-time $animation-ease;
       opacity: 0;
       will-change: opacity;
 

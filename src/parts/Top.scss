@@ -5,7 +5,6 @@
   padding-block: 2rem;
   display: flex;
   justify-content: space-between;
-  position: relative;
   flex-wrap: wrap-reverse;
   gap: 1rem;
 
@@ -39,7 +38,7 @@
   border-radius: 4px;
   vertical-align: middle;
   opacity: 0.5;
-  transform: opacity $animation-time ease-in-out;
+  transform: opacity $animation-time $animation-ease;
   // will-change: opacity, font-weight;
 
   &.active {

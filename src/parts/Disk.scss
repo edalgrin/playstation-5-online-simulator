@@ -17,7 +17,7 @@
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: 100% 0%;
-    transition: background-size $animation-time ease-in-out;
+    transition: background-size $animation-time $animation-ease;
   }
 
   div {

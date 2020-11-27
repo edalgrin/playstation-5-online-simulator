@@ -11,8 +11,6 @@ body {
   font-size: 1.2rem;
   color: white;
   background-color: black;
-  // overflow: hidden;
-  // letter-spacing: 1px;
 }
 
 ul {
@@ -53,7 +51,7 @@ p {
     bottom: -4px;
     border: 2px solid white;
     border-radius: inherit;
-    transition: opacity $animation-time ease-in-out;
+    transition: opacity $animation-time $animation-ease;
     opacity: 0;
     will-change: opacity;
     background-image: linear-gradient(
@@ -109,8 +107,8 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color $animation-time ease-in-out,
-    background-color $animation-time ease-in-out;
+  transition: color $animation-time $animation-ease,
+    background-color $animation-time $animation-ease;
   will-change: color, background-color;
 
   &.ps5-btn-mono {
@@ -139,44 +137,10 @@ p {
   }
 }
 
-/**/
-
-.ps5-page {
-  position: relative;
-  z-index: 1;
-  // scroll-snap-type: y mandatory;
-  // overflow-y: scroll;
-  // height: 100vh;
-  // transform: scale(.8);
-  // opacity: 0;
-  // transition: $animation-time ease-in-out;
-
-  // &.active {
-  //   transform: scale(1);
-  //   opacity: 1;
-  //   transition-delay: $animation-time;
-  // }
-}
-
-.ps5-hero {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  // scroll-snap-align: start;
-
-  &.ps5-hero-fullscreen {
-    min-height: 100vh;
-  }
-
-  .ps5-preview {
-    flex-grow: 1;
-  }
-}
-
 .ps5-animate-from-bottom {
   animation-name: animation-from-bottom;
   animation-duration: $animation-time;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: $animation-ease;
   animation-fill-mode: forwards;
   animation-delay: ($animation-time);
   transform: translateY(5%);
@@ -187,19 +151,6 @@ p {
       transform: translateY(0%);
       opacity: 1;
     }
-  }
-}
-
-.ps5-content {
-  background: linear-gradient(to bottom, transparent, rgba(black, 0.8) 100px);
-  // scroll-snap-align: start;
-
-  > *:last-child {
-    padding-bottom: (2 * $margin-x);
-  }
-
-  h3 {
-    font-weight: 200;
   }
 }
 
@@ -221,121 +172,106 @@ p {
   }
 }
 
-// .ps5-content {
-//   scroll-snap-type: y mandatory;
-//   overflow-y: scroll;
-//   height: 100vh;
-//   .ps5-lists {
-//     scroll-snap-align: start;
-
-//     .ps5-list {
-//       display: block;
-//     }
-//   }
-// }
-
 /**/
 
-.ps5-overlay {
+.ps5-page {
+  overflow: hidden;
+
+  &.enter {
+    .ps5-bg:after {
+      opacity: 0;
+    }
+
+    .ps5-bg {
+      transform: scale(1);
+    }
+
+    .ps5-sheet {
+      opacity: 0;
+    }
+  }
+
+  &.enter-active {
+    .ps5-bg:after {
+      opacity: 1;
+      transition: ($animation-time * 2) ($animation-time * 5) $animation-ease;
+    }
+
+    .ps5-bg {
+      transform: scale(1.05);
+      transition: $animation-time ($animation-time * 4) $animation-ease;
+    }
+
+    .ps5-sheet {
+      opacity: 1;
+      transition: ($animation-time * 2) ($animation-time * 7) $animation-ease;
+    }
+  }
+}
+
+.ps5-sheet {
+  position: relative;
+}
+
+.ps5-hero {
+  display: flex;
+  flex-direction: column;
+
+  &.ps5-hero-fullscreen {
+    min-height: 100vh;
+  }
+
+  .ps5-preview {
+    flex-grow: 1;
+  }
+}
+
+.ps5-content {
+  background: linear-gradient(to bottom, transparent, rgba(black, 0.8) 100px);
+
+  > *:last-child {
+    padding-bottom: (2 * $margin-x);
+  }
+
+  h3 {
+    font-weight: 300;
+  }
+}
+
+.ps5-modal {
   position: fixed;
-  z-index: 3;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  // background: linear-gradient(45deg, #57484c, #10101c);
+  background: linear-gradient(45deg, #2d2e33, #191a22);
+  padding: $margin-x;
+  display: none;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  gap: 5rem;
-
-  // opacity: 0;
-  // transition: 4s ease-in-out;
-  // transition-delay: 2s;
-
-  canvas {
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+  .ps5-video {
+    height: 100%;
   }
 
-  &.active {
+  .ps5-btn {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  &.exit,
+  &.enter {
+    opacity: 0;
+    transition: ($animation-time * 2) $animation-ease;
+  }
+
+  &.enter,
+  &.enter-done {
+    display: block;
+  }
+
+  &.enter-active {
     opacity: 1;
   }
-}
 
-.ps5-grow {
-  position: relative;
-  animation-duration: 3s;
-  animation-name: animation-shrink;
-  animation-iteration-count: infinite;
-
-  &:after {
-    display: none;
-  }
-
-  @keyframes animation-shrink {
-    10% {
-      transform: scale(0.8);
-      opacity: 0.5;
-    }
-    12% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  .ps5-shine {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: inherit;
-    animation-duration: 3s;
-    animation-name: animation-grow !important;
-    animation-iteration-count: infinite;
-    animation-delay: 300ms;
-
-    &:after {
-      animation-duration: 3s;
-      animation-delay: 300ms;
-      border-width: 1px;
-    }
-
-    &:nth-of-type(2) {
-      animation-delay: 500ms;
-
-      &:after {
-        animation-delay: 500ms;
-      }
-    }
-    &:nth-of-type(3) {
-      animation-delay: 700ms;
-
-      &:after {
-        animation-delay: 700ms;
-      }
-    }
-
-    @keyframes animation-grow {
-      50% {
-        transform: scale(2);
-        opacity: 0.1;
-      }
-      100% {
-        transform: scale(2);
-        opacity: 0;
-      }
-    }
-  }
 }
