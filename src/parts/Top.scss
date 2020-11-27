@@ -34,9 +34,9 @@
 }
 
 .ps5-top-btn {
+  display: block;
   padding: 5px;
-  border-radius: 4px;
-  vertical-align: middle;
+  min-width: 62px;
   opacity: 0.5;
   transform: opacity $animation-time $animation-ease;
   // will-change: opacity, font-weight;

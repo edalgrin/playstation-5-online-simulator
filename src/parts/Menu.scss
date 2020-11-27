@@ -5,11 +5,15 @@
   gap: 7px;
 
   .ps5-disk {
-    border-radius: 15%;
+    border-radius: 20px;
     transform-origin: top;
     transition: width $animation-time $animation-ease;
     width: 75px;
     will-change: width;
+
+    &:after {
+      border-radius: inherit;
+    }
 
     div {
       transition: opacity $animation-time $animation-ease;

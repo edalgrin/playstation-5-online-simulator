@@ -8,19 +8,19 @@ class Menu extends Component {
   }
 
   render() {
-    const active = this.props.active;
+    const menu = this.props.menu;
 
     return (
       <ul
         className="ps5-menu"
-        style={{ transform: "translateX(-" + active * 80 + "px)" }}
+        style={{ transform: "translateX(-" + menu * 80 + "px)" }}
       >
         {this.props.menus.map((item, i) => {
           return (
             <li key={i}>
               <Disk
                 item={item}
-                className={active === i ? "active focus" : ""}
+                className={menu === i ? "active focus" : ""}
                 onClick={() => this.props.onClick(i)}
               />
             </li>

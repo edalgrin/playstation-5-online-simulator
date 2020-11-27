@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
-import YouTube from "react-youtube";
 
+import Home from "./parts/Home.js";
 import Background from "./parts/Background.js";
 import Top from "./parts/Top.js";
 import Menu from "./parts/Menu.js";
 import Preview from "./parts/Preview.js";
 import List from "./parts/List.js";
-import Home from "./parts/Home.js";
+import Modal from "./parts/Modal.js";
 import apps from "./apps.js";
 import "./index.scss";
 // const iconUser = "http://eduardoallegrini.com/static/media/logo.9ba6744a.svg";
@@ -29,17 +29,17 @@ const topLeftMenu = [
 
 const topRightMenu = [
   {
-    label: "Search",
+    label: "search",
     url: "#search",
     content: <i className="material-icons">search</i>,
   },
   {
-    label: "Settings",
+    label: "settings",
     url: "#settings",
     content: <i className="material-icons">settings</i>,
   },
   {
-    label: "User",
+    label: "user",
     url: "#user",
     content: <img src={iconUser} alt="" />,
   },
@@ -51,18 +51,19 @@ const topRightMenu = [
 ];
 
 class Page extends Component {
-  // state: { active: number, top: number, home: boolean, modal: boolean };
   constructor(props) {
     super(props);
     this.state = {
-      active: 0,
+      home: true,
+      menu: 0,
       top: 0,
-      home: false,
-      modal: false,
-      videoId: "",
       player: false,
+      modal: false,
+      modalContent: "",
+      scrollTop: 0,
     };
     this.keydownFunction = this.keydownFunction.bind(this);
+    this.scrollFunction = this.scrollFunction.bind(this);
   }
 
   keydownFunction(e) {
@@ -74,20 +75,28 @@ class Page extends Component {
     }
   }
 
+  scrollFunction(e) {
+    this.setState({
+      scrollTop: window.scrollY,
+    });
+  }
+
   componentDidMount() {
     document.addEventListener("keydown", this.keydownFunction, false);
+    window.addEventListener("scroll", this.scrollFunction);
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.keydownFunction, false);
+    window.removeEventListener("scroll", this.scrollFunction);
   }
 
   render() {
     let top = this.state.top;
     let content = topLeftMenu[top].content;
-    let active = this.state.active;
-    let selected = content[active];
-    let id = top + "" + active;
+    let menu = this.state.menu;
+    let selected = content[menu];
+    let id = top + "" + menu;
     let player = this.state.player;
 
     let backgrounds = content.map((item) => {
@@ -120,8 +129,12 @@ class Page extends Component {
     return (
       <>
         <CSSTransition in={!this.state.home} timeout={1800} unmountOnExit>
-          <div className="ps5-page">
-            <Background active={active} backgrounds={backgrounds} />
+          <div
+            className={
+              "ps5-page" + (this.state.scrollTop > 0 ? " ps5-page-scroll" : "")
+            }
+          >
+            <Background menu={menu} backgrounds={backgrounds} />
 
             <div className={"ps5-sheet"}>
               <div
@@ -134,22 +147,24 @@ class Page extends Component {
                   top={top}
                   topRightMenu={topRightMenu}
                   topLeftMenu={topLeftMenu}
-                  onClickMenu={(e) => this.setState({ top: e, active: 0 })}
-                  onClickModal={(e) => this.setState({ modal: true })}
+                  onClickMenu={(e) => this.setState({ top: e, menu: 0 })}
+                  onClickModal={(e) =>
+                    this.setState({ modal: true, modalContent: e })
+                  }
                 />
 
                 <Menu
-                  active={active}
+                  menu={menu}
                   content={content}
                   menus={menus}
-                  onClick={(e) => this.setState({ active: e })}
+                  onClick={(e) => this.setState({ menu: e })}
                 />
 
                 <Preview
                   id={id}
                   preview={preview}
                   onClick={(e) => {
-                    this.setState({ modal: true, videoId: e });
+                    this.setState({ modal: true, modalContent: e });
                     if (player) {
                       player.playVideo();
                     }
@@ -181,37 +196,16 @@ class Page extends Component {
         </CSSTransition>
 
         <CSSTransition in={this.state.modal} timeout={400}>
-          <div className="ps5-modal">
-            <YouTube
-              videoId={this.state.videoId}
-              containerClassName="ps5-video"
-              opts={{
-                height: "100%",
-                width: "100%",
-                playerVars: {
-                  // https://developers.google.com/youtube/player_parameters
-                  autoplay: 1,
-                  mute: 1,
-                  // controls: 0,
-                },
-              }}
-              // onStateChange={() => alert()}
-              onReady={(e) => this.setState({ player: e.target })}
-            />
-
-            <a
-              href="#modal-close"
-              className="ps5-btn ps5-btn-mono focus"
-              onClick={() => {
-                this.setState({ modal: false });
-                if (player) {
-                  player.pauseVideo();
-                }
-              }}
-            >
-              <i className="material-icons">close</i>
-            </a>
-          </div>
+          <Modal
+            modalContent={this.state.modalContent}
+            onClick={() => {
+              this.setState({ modal: false });
+              if (player) {
+                player.pauseVideo();
+              }
+            }}
+            onReady={(e) => this.setState({ player: e })}
+          />
         </CSSTransition>
       </>
     );

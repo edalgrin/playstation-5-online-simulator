@@ -1,0 +1,67 @@
+@import "../variables.scss";
+
+.ps5-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(black, 0.3);
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  .ps5-modal-wrapper {
+    position: relative;
+    background: linear-gradient(45deg, #2d2e33, #191a22);
+    border-radius: 5px;
+
+    .ps5-modal-dialog {
+      width: 600px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        font-size: 1.5;
+        font-weight: 100;
+      }
+
+      input {
+        padding-inline: 1rem;
+      }
+    }
+
+    .ps5-modal-video {
+      width: 100vw;
+      height: 100vh;
+      padding: $margin-x;
+      box-sizing: border-box;
+    }
+
+    .ps5-modal-btn {
+      position: absolute;
+      z-index: 1;
+      right: 1rem;
+      top: 1rem;
+    }
+  }
+
+  &.exit-active,
+  &.enter {
+    opacity: 0;
+    transition: ($animation-time * 2) $animation-ease;
+  }
+
+  &.exit,
+  &.enter,
+  &.enter-done {
+    display: flex;
+  }
+
+  &.enter-active {
+    opacity: 1;
+  }
+}

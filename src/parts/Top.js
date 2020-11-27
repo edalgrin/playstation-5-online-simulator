@@ -66,7 +66,9 @@ class Top extends Component {
                   className={
                     clock ? "ps5-top-btn active" : "ps5-btn ps5-btn-mono"
                   }
-                  onClick={() => this.props.onClickModal(item.url)}
+                  onClick={() => {
+                    this.props.onClickModal(item.label);
+                  }}
                 >
                   {clock ? this.state.time : item.content}
                 </a>

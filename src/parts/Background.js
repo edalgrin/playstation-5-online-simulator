@@ -15,7 +15,7 @@ class Background extends Component {
               key={i}
               style={{ backgroundImage: "url(" + item + ")" }}
               className={
-                "ps5-bg-item" + (this.props.active === i ? " active" : "")
+                "ps5-bg-item" + (this.props.menu === i ? " active" : "")
               }
             ></div>
           );

@@ -20,6 +20,7 @@ ul {
   display: flex;
 }
 
+input,
 button,
 a {
   color: inherit;
@@ -50,10 +51,11 @@ p {
     right: -4px;
     bottom: -4px;
     border: 2px solid white;
-    border-radius: inherit;
-    transition: opacity $animation-time $animation-ease;
+    border-radius: 4px;
+    transition: $animation-time $animation-ease;
     opacity: 0;
-    will-change: opacity;
+    transform: scale(0.95);
+    // will-change: opacity;
     background-image: linear-gradient(
       -45deg,
       transparent 30%,
@@ -66,16 +68,12 @@ p {
     animation-iteration-count: infinite;
   }
 
+  &.focus,
+  &:focus,
   &:hover {
     &:after {
-      opacity: 0.3;
-    }
-  }
-
-  &.focus,
-  &:focus {
-    &:after {
       opacity: 1;
+      transform: scale(1);
       animation-name: animation-shine;
 
       @keyframes animation-shine {
@@ -127,6 +125,10 @@ p {
 
   &.ps5-btn-primary {
     background-color: rgba(black, 0.6);
+  }
+
+  &:after {
+    border-radius: inherit;
   }
 
   &.focus,
@@ -207,6 +209,30 @@ p {
       transition: ($animation-time * 2) ($animation-time * 7) $animation-ease;
     }
   }
+
+  &.ps5-page-scroll {
+    .ps5-top {
+      opacity: 0;
+    }
+
+    .ps5-menu {
+      transform: none !important;
+      transition: none;
+
+      .ps5-disk {
+        opacity: 0;
+
+        &.active {
+          opacity: 1;
+          position: fixed;
+          left: $margin-x;
+          top: 1rem;
+          width: 75px;
+          transition: $animation-time $animation-ease !important;
+        }
+      }
+    }
+  }
 }
 
 .ps5-sheet {
@@ -216,6 +242,7 @@ p {
 .ps5-hero {
   display: flex;
   flex-direction: column;
+  min-height: 80vh;
 
   &.ps5-hero-fullscreen {
     min-height: 100vh;
@@ -236,42 +263,4 @@ p {
   h3 {
     font-weight: 300;
   }
-}
-
-.ps5-modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, #2d2e33, #191a22);
-  padding: $margin-x;
-  display: none;
-
-  .ps5-video {
-    height: 100%;
-  }
-
-  .ps5-btn {
-    position: absolute;
-    z-index: 1;
-    right: 1rem;
-    top: 1rem;
-  }
-
-  &.exit,
-  &.enter {
-    opacity: 0;
-    transition: ($animation-time * 2) $animation-ease;
-  }
-
-  &.enter,
-  &.enter-done {
-    display: block;
-  }
-
-  &.enter-active {
-    opacity: 1;
-  }
-
 }

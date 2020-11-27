@@ -7,10 +7,6 @@
   align-items: flex-end;
 
   .ps5-disk {
-    &:after {
-      border-radius: 4px;
-    }
-
     display: none;
 
     @media (min-width: 992px) {
