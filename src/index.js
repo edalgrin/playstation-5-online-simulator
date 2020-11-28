@@ -10,6 +10,8 @@ import Preview from "./parts/Preview.js";
 import List from "./parts/List.js";
 import Modal from "./parts/Modal.js";
 
+// import { Apps, Games, Images } from "./database.js";
+
 import "./index.scss";
 
 const classNames = require("classnames");
@@ -18,9 +20,10 @@ class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      home: true,
+      home: false,
+      top: undefined,
       apps: undefined,
-      appSelected: 0,
+      appSelected: undefined,
       lists: false,
       player: false,
       modal: false,
@@ -48,6 +51,7 @@ class Page extends Component {
   componentDidMount() {
     document.addEventListener("keydown", this.keydownFunction, false);
     window.addEventListener("scroll", this.scrollFunction);
+    // this.setState({ apps: [Games.spider], top: 0, appSelected: 0 });
   }
 
   componentWillUnmount() {
@@ -59,7 +63,7 @@ class Page extends Component {
     this.setState({ modal: false });
     if (this.state.player) {
       this.state.player.pauseVideo();
-	}
+    }
   }
 
   modalOpen(data) {
@@ -70,7 +74,13 @@ class Page extends Component {
   }
 
   navUpdate(data) {
-    this.setState({ apps: data.apps, appSelected: 0, lists: data.lists });
+    this.setState({
+      apps: data.apps,
+      top: data.top,
+      appSelected: 0,
+      lists: data.lists,
+    });
+    this.modalClose();
   }
 
   render() {
@@ -81,6 +91,8 @@ class Page extends Component {
     let list = false;
     if (apps != undefined) {
       app = apps[appSelected];
+    }
+    if (lists != undefined) {
       list = lists[appSelected];
     }
 
@@ -101,6 +113,7 @@ class Page extends Component {
                 })}
               >
                 <Top
+                  top={this.state.top}
                   onClickMenu={(e) => this.navUpdate(e)}
                   onClickModal={(e) => this.modalOpen(e)}
                 />
@@ -122,7 +135,11 @@ class Page extends Component {
                 className="ps5-content ps5-container ps5-animate-from-bottom"
                 key={appSelected}
               >
-                <List list={list} onClick={(e) => this.modalOpen(e)} />
+                <List
+                  list={list}
+                  onClickMenu={(e) => this.navUpdate(e)}
+                  onClickModal={(e) => this.modalOpen(e)}
+                />
               </div>
             )}
           </div>

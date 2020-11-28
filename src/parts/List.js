@@ -12,7 +12,7 @@ class List extends Component {
 
       return (
         <div className="ps5-lists" key={i}>
-          <h3>{item.title}</h3>
+          {item.title && <h3>{item.title}</h3>}
 
           <div
             className={classNames("ps5-list", {
@@ -25,9 +25,14 @@ class List extends Component {
                   key={i}
                   item={item}
                   hover="min"
-                  href={!gallery ? item.purchase : false}
                   onClick={() =>
-                    gallery ? this.props.onClick(item.modal) : {}
+                    gallery
+                      ? this.props.onClickModal(item.modal)
+                      : this.props.onClickMenu({
+                          apps: [item],
+                          top: undefined,
+                          appSelected: 0,
+                        })
                   }
                 />
               );

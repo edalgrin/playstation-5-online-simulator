@@ -21,10 +21,11 @@ class Modal extends Component {
                 width: "100%",
                 playerVars: {
                   autoplay: 1,
-                  mute: 1,
+                  // mute: 1,
                 },
               }}
               onReady={(e) => this.props.onReady(e.target)}
+              onEnd={() => this.props.onClick()}
             />
           ) : modalType === "image" ? (
             <div
@@ -32,7 +33,7 @@ class Modal extends Component {
               style={{ backgroundImage: "url(" + modalContent.element + ")" }}
             />
           ) : (
-            <div className="ps5-modal-dialog">{modalContent}</div>
+            modalContent
           )}
 
           <a

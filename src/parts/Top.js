@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Apps, Games, Images } from "../database.js";
+import Search from "./Search.js";
 import "./Top.scss";
 // const iconUser = "http://eduardoallegrini.com/static/media/logo.9ba6744a.svg";
 import iconUser from "../assets/icon-user.png";
 
 const classNames = require("classnames");
+const GamesAll = Object.values(Games);
 
 const topLeftMenu = [
   {
@@ -22,7 +24,7 @@ const topLeftMenu = [
           {
             type: "games",
             title: "More like this",
-            items: [Games.astro, Games.astro, Games.astro],
+            items: [Games.spider, Games.astro, Games.astro],
           },
         ],
       },
@@ -36,6 +38,16 @@ const topLeftMenu = [
           },
         ],
       },
+      {
+        app: Apps.explore,
+        lists: [
+          {
+            type: "games",
+            title: "All the games",
+            items: GamesAll,
+          },
+        ],
+      },
       { app: Games.sackboy },
     ],
   },
@@ -46,36 +58,9 @@ const topLeftMenu = [
   },
 ];
 
-const topRightMenu = [
-  {
-    label: "search",
-    url: "#search",
-    content: <i className="material-icons">search</i>,
-  },
-  {
-    label: "settings",
-    url: "#settings",
-    content: <i className="material-icons">settings</i>,
-  },
-  {
-    label: "user",
-    url: "#user",
-    content: <img src={iconUser} alt="" />,
-  },
-  {
-    label: "clock",
-    url: "#clock",
-    content: "clock",
-  },
-];
-
-const Search = () => {
-  return <input className="ps5-btn" type="search" placeholder="search" />;
-};
-
 const User = () => {
   return (
-    <>
+    <div className="ps5-modal-dialog">
       <h2>Follow me</h2>
       <div>
         <a
@@ -100,7 +85,7 @@ const User = () => {
           </svg>
         </a>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -110,7 +95,6 @@ class Top extends Component {
 
     this.state = {
       time: "--:--",
-      top: undefined,
     };
   }
 
@@ -137,10 +121,6 @@ class Top extends Component {
   }
 
   handleClick(current) {
-    this.setState({
-      top: current,
-    });
-
     const content = topLeftMenu[current].content;
 
     if (content) {
@@ -150,7 +130,6 @@ class Top extends Component {
       content.map((item, i) => {
         let app = item.app;
         let list = item.lists;
-        // console.log(list);
         if (app) {
           apps.push(item.app);
         }
@@ -170,11 +149,42 @@ class Top extends Component {
       this.props.onClickMenu({
         apps: apps,
         lists: lists,
+        top: current,
       });
     }
   }
 
   render() {
+    const topRightMenu = [
+      {
+        label: "search",
+        url: "#search",
+        content: <i className="material-icons">search</i>,
+        modalContent: <Search onClickMenu={(e) => this.props.onClickMenu(e)} />,
+      },
+      {
+        label: "settings",
+        url: "#settings",
+        content: <i className="material-icons">settings</i>,
+        modalContent: (
+          <div className="ps5-modal-dialog">
+            <h2>Settings</h2>
+          </div>
+        ),
+      },
+      {
+        label: "user",
+        url: "#user",
+        content: <img src={iconUser} alt="" />,
+        modalContent: <User />,
+      },
+      {
+        label: "clock",
+        url: "#clock",
+        content: "clock",
+      },
+    ];
+
     return (
       <div className="ps5-top">
         <ul>
@@ -184,7 +194,7 @@ class Top extends Component {
                 <a
                   href={item.url}
                   className={classNames("ps5-top-btn", {
-                    active: this.state.top === i,
+                    active: this.props.top === i,
                   })}
                   onClick={() => this.handleClick(i)}
                 >
@@ -208,7 +218,7 @@ class Top extends Component {
                     clock ? "ps5-top-btn active" : "ps5-btn ps5-btn-mono"
                   }
                   onClick={() => {
-                    this.props.onClickModal(item.label);
+                    this.props.onClickModal(item.modalContent);
                   }}
                 >
                   {clock ? this.state.time : item.content}

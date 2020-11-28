@@ -45,7 +45,7 @@ export const Games = {
     price: "Free",
     logo: logoAstro,
     text:
-    "Discover the future of play with intergalactic platforming hero - ASTRO!",
+      "Discover the future of play with intergalactic platforming hero - ASTRO!",
     purchase: "https://google.com",
     modal: {
       type: "youtube",
@@ -61,7 +61,7 @@ export const Games = {
     price: "Purchased",
     logo: logoDestruction,
     text:
-    " Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim officiis",
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim officiis",
     purchase: "https://google.com",
     modal: {
       type: "youtube",
@@ -77,11 +77,46 @@ export const Games = {
     price: "€ 19,99",
     logo: logoSackboy,
     text:
-    "Dolores hic deleniti ut natus tempora earum, provident debitis obcaecati et est",
+      "Dolores hic deleniti ut natus tempora earum, provident debitis obcaecati et est",
     purchase: "https://google.com",
     modal: {
       type: "youtube",
       element: "mUwI6e-em3o",
+    },
+  },
+  spider: {
+    url: "#spider-man-miles-morales",
+    cover: coverSpider,
+    label: "Spider-man: Miles Morales",
+    bg: bgSpider,
+    tag: "Full Game",
+    price: "€ 49,99",
+    // logo: logoSackboy,
+    title: "Super",
+    text:
+      "Dolores hic deleniti ut natus tempora earum, provident debitis obcaecati et est",
+    purchase: "https://google.com",
+    modal: {
+      type: "youtube",
+      element: "NTunTURbyUU",
+    },
+  },
+  cod: {
+    url: "#cod",
+    cover:
+      "https://image.api.playstation.com/pr/bam-art/111/804/d68d0b1b-a89b-4439-ab93-4811c738b45b.jpg?w=780&thumb=false",
+    label: "Call of Duty: Black Ops Cold War",
+    bg: "https://image.api.playstation.com/vulcan/img/rnd/202011/1200/QsgOeKSwiREmIfS63uLks5kT.png?w=1920",
+    tag: "Full Game",
+    price: "€ 49,99",
+    // logo: logoSackboy,
+    title: "Super",
+    text:
+      "Dolores hic deleniti ut natus tempora earum, provident debitis obcaecati et est",
+    purchase: "https://store.playstation.com/it-it/concept/233407",
+    modal: {
+      type: "youtube",
+      element: "NTunTURbyUU",
     },
   },
 };

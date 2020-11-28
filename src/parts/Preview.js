@@ -26,13 +26,13 @@ class Preview extends Component {
                 Play
               </a>
 
-              <a
+              {/* <a
                 href="#more"
                 className="ps5-btn ps5-btn-mono ps5-btn-lg ps5-btn-primary"
                 onClick={() => this.props.onClick("more")}
               >
                 <i className="material-icons">more_horiz</i>
-              </a>
+              </a> */}
             </div>
           )}
         </div>
