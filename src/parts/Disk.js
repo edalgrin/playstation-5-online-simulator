@@ -1,23 +1,26 @@
 import React, { Component } from "react";
 import "./Disk.scss";
 
-class Disk extends Component {
-  constructor(props) {
-    super(props);
-  }
+const classNames = require("classnames");
 
+class Disk extends Component {
   render() {
     const item = this.props.item;
+    const href = this.props.href;
+    const hover = this.props.hover;
+
     return (
       <a
-        href={item.url}
+        href={href || item.url}
+        target={href ? "_blank" : ""}
+        rel={href ? "noopener noreferrer" : ""}
         title={item.label}
-        className={
-          "ps5-disk " +
-          (this.props.mid ? "ps5-disk-mid " : "") +
-          (this.props.min ? "ps5-disk-min " : "") +
+        className={classNames(
+          "ps5-disk",
+          { "ps5-disk-mid": hover === "mid" },
+          { "ps5-disk-min": hover === "min" },
           this.props.className
-        }
+        )}
         style={{ backgroundImage: "url(" + item.cover + ")" }}
         onClick={this.props.onClick}
       >

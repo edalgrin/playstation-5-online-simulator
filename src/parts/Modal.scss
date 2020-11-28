@@ -13,12 +13,16 @@
 
   .ps5-modal-wrapper {
     position: relative;
+    max-width: 100%;
+    max-height: 100%;
     background: linear-gradient(45deg, #2d2e33, #191a22);
     border-radius: 5px;
 
     .ps5-modal-dialog {
       width: 600px;
       height: 400px;
+      max-width: 100%;
+      max-height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -34,11 +38,22 @@
       }
     }
 
+    .ps5-modal-image,
     .ps5-modal-video {
       width: 100vw;
       height: 100vh;
-      padding: $margin-x;
+      padding-block: $margin-x;
       box-sizing: border-box;
+
+      @media (min-width: 576px) {
+        padding-inline: $margin-x;
+      }
+    }
+
+    .ps5-modal-image {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     .ps5-modal-btn {

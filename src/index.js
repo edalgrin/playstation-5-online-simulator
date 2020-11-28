@@ -9,58 +9,23 @@ import Menu from "./parts/Menu.js";
 import Preview from "./parts/Preview.js";
 import List from "./parts/List.js";
 import Modal from "./parts/Modal.js";
-import apps from "./apps.js";
+
 import "./index.scss";
-// const iconUser = "http://eduardoallegrini.com/static/media/logo.9ba6744a.svg";
-import iconUser from "./assets/icon-user.png";
 
-const topLeftMenu = [
-  {
-    label: "Games",
-    url: "#games",
-    content: [apps.astro, apps.destruction, apps.sackboy],
-  },
-  {
-    label: "Media",
-    url: "#media",
-    content: [apps.store, apps.explore],
-  },
-];
-
-const topRightMenu = [
-  {
-    label: "search",
-    url: "#search",
-    content: <i className="material-icons">search</i>,
-  },
-  {
-    label: "settings",
-    url: "#settings",
-    content: <i className="material-icons">settings</i>,
-  },
-  {
-    label: "user",
-    url: "#user",
-    content: <img src={iconUser} alt="" />,
-  },
-  {
-    label: "clock",
-    url: "#clock",
-    content: "clock",
-  },
-];
+const classNames = require("classnames");
 
 class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
       home: true,
-      menu: 0,
-      top: 0,
+      apps: undefined,
+      appSelected: 0,
+      lists: false,
       player: false,
       modal: false,
       modalContent: "",
-      scrollTop: 0,
+      scrolled: false,
     };
     this.keydownFunction = this.keydownFunction.bind(this);
     this.scrollFunction = this.scrollFunction.bind(this);
@@ -68,17 +33,16 @@ class Page extends Component {
 
   keydownFunction(e) {
     if (e.keyCode === 27) {
-      this.setState({ modal: false });
-      if (this.state.player) {
-        this.state.player.pauseVideo();
-      }
+      this.modalClose();
     }
   }
 
   scrollFunction(e) {
-    this.setState({
-      scrollTop: window.scrollY,
-    });
+    if (window.scrollY > 100) {
+      this.setState({
+        scrolled: true,
+      });
+    }
   }
 
   componentDidMount() {
@@ -91,119 +55,87 @@ class Page extends Component {
     window.removeEventListener("scroll", this.scrollFunction);
   }
 
-  render() {
-    let top = this.state.top;
-    let content = topLeftMenu[top].content;
-    let menu = this.state.menu;
-    let selected = content[menu];
-    let id = top + "" + menu;
-    let player = this.state.player;
+  modalClose() {
+    this.setState({ modal: false });
+    if (this.state.player) {
+      this.state.player.pauseVideo();
+	}
+  }
 
-    let backgrounds = content.map((item) => {
-      return item.bg;
-    });
-    let menus = content.map((item) => {
-      return {
-        url: item.url,
-        label: item.label,
-        cover: item.cover,
-        icon: item.icon,
-      };
-    });
-    let preview = selected;
-    // preview["bg"] = undefined;
-    // delete preview.lists;
-    // delete preview.bg;
-    let lists = selected.lists
-      ? selected.lists.map((list) => {
-          return {
-            shrink: list.shrink,
-            title: list.title,
-            apps: list.apps.map((app) => {
-              return apps[app];
-            }),
-          };
-        })
-      : false;
+  modalOpen(data) {
+    this.setState({ modal: true, modalContent: data });
+    if (this.state.player) {
+      this.state.player.playVideo();
+    }
+  }
+
+  navUpdate(data) {
+    this.setState({ apps: data.apps, appSelected: 0, lists: data.lists });
+  }
+
+  render() {
+    const apps = this.state.apps;
+    const appSelected = this.state.appSelected;
+    const lists = this.state.lists;
+    let app = false;
+    let list = false;
+    if (apps != undefined) {
+      app = apps[appSelected];
+      list = lists[appSelected];
+    }
 
     return (
       <>
         <CSSTransition in={!this.state.home} timeout={1800} unmountOnExit>
           <div
-            className={
-              "ps5-page" + (this.state.scrollTop > 0 ? " ps5-page-scroll" : "")
-            }
+            className={classNames("ps5-page", {
+              "ps5-page-scroll": this.state.scrolled,
+            })}
           >
-            <Background menu={menu} backgrounds={backgrounds} />
+            <Background apps={apps} appSelected={appSelected} />
 
             <div className={"ps5-sheet"}>
               <div
-                className={
-                  "ps5-hero ps5-container" +
-                  (lists ? "" : " ps5-hero-fullscreen")
-                }
+                className={classNames("ps5-hero", "ps5-container", {
+                  "ps5-hero-fullscreen": !list,
+                })}
               >
                 <Top
-                  top={top}
-                  topRightMenu={topRightMenu}
-                  topLeftMenu={topLeftMenu}
-                  onClickMenu={(e) => this.setState({ top: e, menu: 0 })}
-                  onClickModal={(e) =>
-                    this.setState({ modal: true, modalContent: e })
-                  }
+                  onClickMenu={(e) => this.navUpdate(e)}
+                  onClickModal={(e) => this.modalOpen(e)}
                 />
 
                 <Menu
-                  menu={menu}
-                  content={content}
-                  menus={menus}
-                  onClick={(e) => this.setState({ menu: e })}
+                  apps={apps}
+                  appSelected={appSelected}
+                  onClick={(e) => this.setState({ appSelected: e })}
                 />
 
-                <Preview
-                  id={id}
-                  preview={preview}
-                  onClick={(e) => {
-                    this.setState({ modal: true, modalContent: e });
-                    if (player) {
-                      player.playVideo();
-                    }
-                  }}
-                />
-              </div>
-
-              <div
-                className="ps5-content ps5-container ps5-animate-from-bottom"
-                key={id}
-              >
-                {lists &&
-                  lists.map((list, i) => {
-                    return (
-                      <div className="ps5-lists" key={i}>
-                        <h3>{list.title}</h3>
-
-                        <List apps={list.apps} shrink={list.shrink} />
-                      </div>
-                    );
-                  })}
+                {app && (
+                  <Preview app={app} onClick={(e) => this.modalOpen(e)} />
+                )}
               </div>
             </div>
+
+            {list && (
+              <div
+                className="ps5-content ps5-container ps5-animate-from-bottom"
+                key={appSelected}
+              >
+                <List list={list} onClick={(e) => this.modalOpen(e)} />
+              </div>
+            )}
           </div>
         </CSSTransition>
 
         <CSSTransition in={this.state.home} timeout={1000} unmountOnExit>
-          <Home handleClick={() => this.setState({ home: false })} />
+          <Home onClick={() => this.setState({ home: false })} />
         </CSSTransition>
 
         <CSSTransition in={this.state.modal} timeout={400}>
           <Modal
             modalContent={this.state.modalContent}
-            onClick={() => {
-              this.setState({ modal: false });
-              if (player) {
-                player.pauseVideo();
-              }
-            }}
+            onClick={() => this.modalClose()}
             onReady={(e) => this.setState({ player: e })}
           />
         </CSSTransition>

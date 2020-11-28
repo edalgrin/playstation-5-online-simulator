@@ -211,27 +211,28 @@ p {
   }
 
   &.ps5-page-scroll {
-    .ps5-top {
-      opacity: 0;
-    }
+    // .ps5-top {
+    //   opacity: 0;
+    // }
 
-    .ps5-menu {
-      transform: none !important;
-      transition: none;
+    // .ps5-menu {
+    //   transform: none !important;
+    //   transition: none;
 
-      .ps5-disk {
-        opacity: 0;
+    //   .ps5-disk {
+    //     opacity: 0;
+    //     transition: none;
 
-        &.active {
-          opacity: 1;
-          position: fixed;
-          left: $margin-x;
-          top: 1rem;
-          width: 75px;
-          transition: $animation-time $animation-ease !important;
-        }
-      }
-    }
+    //     &.active {
+    //       opacity: 1;
+    //       position: fixed;
+    //       // left: $margin-x;
+    //       top: 1rem;
+    //       width: 75px;
+    //       transition: none;
+    //     }
+    //   }
+    // }
   }
 }
 
@@ -242,7 +243,7 @@ p {
 .ps5-hero {
   display: flex;
   flex-direction: column;
-  min-height: 80vh;
+  min-height: 90vh;
 
   &.ps5-hero-fullscreen {
     min-height: 100vh;
@@ -254,6 +255,7 @@ p {
 }
 
 .ps5-content {
+  position: relative;
   background: linear-gradient(to bottom, transparent, rgba(black, 0.8) 100px);
 
   > *:last-child {

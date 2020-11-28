@@ -20,6 +20,11 @@
       opacity: 0;
       will-change: opacity;
 
+      span,
+      p {
+        display: none;
+      }
+
       h3 {
         position: absolute;
         bottom: 1.2rem;

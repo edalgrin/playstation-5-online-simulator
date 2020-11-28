@@ -1,26 +1,28 @@
 import React, { Component } from "react";
 import "./Background.scss";
 
-class Background extends Component {
-  constructor(props) {
-    super(props);
-  }
+const classNames = require("classnames");
 
+class Background extends Component {
   render() {
-    return (
+    const apps = this.props.apps;
+
+    return apps ? (
       <div className="ps5-bg">
-        {this.props.backgrounds.map((item, i) => {
+        {apps.map((item, i) => {
           return (
             <div
               key={i}
-              style={{ backgroundImage: "url(" + item + ")" }}
-              className={
-                "ps5-bg-item" + (this.props.menu === i ? " active" : "")
-              }
+              style={{ backgroundImage: "url(" + item.bg + ")" }}
+              className={classNames("ps5-bg-item", {
+                active: this.props.appSelected === i,
+              })}
             ></div>
           );
         })}
       </div>
+    ) : (
+      false
     );
   }
 }

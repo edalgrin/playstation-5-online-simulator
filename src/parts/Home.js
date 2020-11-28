@@ -18,7 +18,7 @@ class Home extends Component {
           <a
             href="#start"
             className="ps5-btn ps5-btn-mono ps5-btn-lg focus"
-            onClick={() => this.props.handleClick()}
+            onClick={() => this.props.onClick()}
           >
             <i className="material-icons">power_settings_new</i>
             <div className="ps5-shine focus"></div>
