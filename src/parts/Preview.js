@@ -8,7 +8,7 @@ class Preview extends Component {
     const price = item.price;
 
     return (
-      <div className="ps5-preview ps5-animate-from-bottom" key={item.url}>
+      <div className="ps5-preview ps5-animate-from-bottom" key={item.label}>
         <div>
           {item.logo && <img src={item.logo} alt={item.label} />}
 

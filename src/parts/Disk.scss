@@ -14,7 +14,7 @@
     width: 100%;
     padding-bottom: 100%;
     background: linear-gradient(to bottom, transparent, rgba(black, 1));
-    background-position: bottom;
+    background-position: 50% 101%;
     background-repeat: no-repeat;
     background-size: 100% 0%;
     transition: background-size $animation-time $animation-ease;

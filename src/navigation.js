@@ -24,6 +24,61 @@ export const menuPrimary = [
         ],
       },
       {
+        app: Games.assassin,
+        lists: [
+          {
+            type: "gallery",
+            title: "Media",
+            items: Images.assassin,
+          },
+          {
+            type: "games",
+            title: "More like this",
+            items: [Games.spider, Games.astro, Games.astro],
+          },
+        ],
+      },
+      {
+        app: Games.demon,
+        lists: [
+          {
+            type: "gallery",
+            title: "Media",
+            items: Images.demon,
+          },
+          {
+            type: "games",
+            title: "More like this",
+            items: [Games.spider, Games.astro, Games.astro],
+          },
+        ],
+      },
+      {
+        app: Apps.explore,
+        lists: [
+          {
+            type: "games",
+            title: "All the games",
+            items: GamesAll,
+          },
+        ],
+      },
+      {
+        app: Games.god,
+        lists: [
+          {
+            type: "gallery",
+            title: "Media",
+            items: Images.god,
+          },
+          {
+            type: "games",
+            title: "More like this",
+            items: [Games.spider, Games.astro, Games.astro],
+          },
+        ],
+      },
+      {
         app: Games.astro,
         lists: [
           {
@@ -39,19 +94,30 @@ export const menuPrimary = [
         ],
       },
       {
-        app: Games.destruction,
-      },
-      {
-        app: Apps.explore,
+        app: Games.sackboy,
         lists: [
           {
+            type: "gallery",
+            title: "Media",
+            items: Images.sackboy,
+          },
+          {
             type: "games",
-            title: "All the games",
-            items: GamesAll,
+            title: "More like this",
+            items: [Games.spider, Games.astro, Games.astro],
           },
         ],
       },
-      { app: Games.sackboy },
+      {
+        app: Apps.store,
+        lists: [
+          {
+            type: "games",
+            title: "Deals",
+            items: [Games.spider],
+          },
+        ],
+      },
     ],
   },
   {

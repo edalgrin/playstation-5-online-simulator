@@ -130,14 +130,15 @@ class Page extends Component {
 
             {list && (
               <div
-                className="ps5-content ps5-container ps5-animate-from-bottom"
+                className="ps5-content"
                 key={appSelected}
-              >
+                >
+                <div className="ps5-container ps5-animate-from-bottom">
                 <List
                   list={list}
                   onClickMenu={(e) => this.navUpdate(e)}
                   onClickModal={(e) => this.modalOpen(e)}
-                />
+                /></div>
               </div>
             )}
           </div>
