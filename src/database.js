@@ -2,10 +2,9 @@ import React from "react";
 
 import coverStore from "./assets/cover-store.png";
 import coverExplore from "./assets/cover-explore.png";
-
-import logoAstro from "./assets/logo-astro.png";
-import logoSackboy from "./assets/logo-sackboy.png";
-import logoDestruction from "./assets/logo-destruction.png";
+import coverNetflix from "./assets/cover-netflix.png";
+import coverSpotify from "./assets/cover-spotify.png";
+import coverDisney from "./assets/cover-disney.png";
 
 export const Apps = {
   store: {
@@ -23,8 +22,40 @@ export const Apps = {
     bg:
       "https://gmedia.playstation.com/is/image/SIEPDC/horizon-forbidden-west-screenshot-01-disclaimer-02oct20?$1600px--t$",
     title: "The games you want",
+    text: "Extraordinary exclusive games from PlayStation Studios",
+  },
+  netflix: {
+    cover: coverNetflix,
+    label: "Netflix",
+    bg:
+      "https://gmedia.playstation.com/is/image/SIEPDC/netflix-page-banner-desktop-02-en-10nov20?$1600px--t$",
+    title: "Netflix",
     text:
-      "Extraordinary exclusive games from PlayStation Studios",
+      "Watch movies, TV shows and more with Netflix on PS5, streaming the latest original programming.",
+    price: "Discover",
+    purchase: "https://www.playstation.com/en-us/ps5/ps5-entertainment/",
+  },
+  spotify: {
+    cover: coverSpotify,
+    label: "Spotify",
+    bg:
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1567&q=80",
+    title: "Spotify",
+    text:
+      "Check out Spotify's audio destination curated specifically for gamers.",
+    price: "Discover",
+    purchase: "https://www.playstation.com/en-us/ps5/ps5-entertainment/",
+  },
+  disney: {
+    cover: coverDisney,
+    label: "Disney +",
+    bg:
+      "https://gmedia.playstation.com/is/image/SIEPDC/disney-plus-the-mandalorian-page-banner-desktop-01-en-09nov20?$1600px--t$",
+    title: "Disney+",
+    text:
+      "Stream entertainment from Disney, Pixar, Marvel, Star Wars and National Geographic. Epic movies, series, and Originals from some of the world's best storytellers are waiting.",
+    price: "Discover",
+    purchase: "https://www.playstation.com/en-us/ps5/ps5-entertainment/",
   },
 };
 
@@ -52,7 +83,6 @@ export const Games = {
       "https://gmedia.playstation.com/is/image/SIEPDC/astros-playroom-screenshot-04-disclaimer-en-06oct20?$1600px--t$",
     tag: "Full Game",
     price: "Free",
-    logo: logoAstro,
     text:
       "ASTRO and his crew take you on a magical exploration of the PS5™ console.",
     purchase: "https://www.playstation.com/en-us/games/astros-playroom/",

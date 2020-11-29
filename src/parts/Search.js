@@ -19,7 +19,7 @@ class Search extends Component {
     const input = this.state.input;
     let result = false;
 
-    if (input != "" && input.length > 2) {
+    if (input !== "" && input.length > 2) {
       result = [];
       Object.values(Games).map((item, i) => {
         if (item) {

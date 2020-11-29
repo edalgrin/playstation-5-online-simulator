@@ -194,6 +194,10 @@ p {
     .ps5-sheet {
       opacity: 0;
     }
+
+    .ps5-content {
+      opacity: 0;
+    }
   }
 
   &.enter-active {
@@ -208,6 +212,11 @@ p {
     }
 
     .ps5-sheet {
+      opacity: 1;
+      transition: ($animation-time * 2) ($animation-time * 7) $animation-ease;
+    }
+
+    .ps5-content {
       opacity: 1;
       transition: ($animation-time * 2) ($animation-time * 7) $animation-ease;
     }

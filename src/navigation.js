@@ -123,7 +123,11 @@ export const menuPrimary = [
   {
     label: "Media",
     url: "#media",
-    content: [{ app: Apps.store }, { app: Apps.explore }],
+    content: [
+      { app: Apps.netflix },
+      { app: Apps.spotify },
+      { app: Apps.disney },
+    ],
   },
 ];
 
