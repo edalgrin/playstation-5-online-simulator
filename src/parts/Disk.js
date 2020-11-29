@@ -11,7 +11,7 @@ class Disk extends Component {
 
     return (
       <a
-        href={href || item.url}
+        href={href || "#modal"}
         target={href ? "_blank" : ""}
         rel={href ? "noopener noreferrer" : ""}
         title={item.label}

@@ -7,11 +7,17 @@ const Search = (props) => {
   const [input, setInput] = useState("");
   let result = false;
 
-  if (input != "") {
+  if (input != "" && input.length > 2) {
     result = [];
     Object.values(Games).map((item, i) => {
-      if (item && item.label.toLowerCase().includes(input)) {
-        result.push(item);
+      if (item) {
+        let label = item.label;
+        let keywords = item.keywords;
+        if (label && label.toLowerCase().includes(input)) {
+          result.push(item);
+        } else if (keywords && keywords.toLowerCase().includes(input)) {
+          result.push(item);
+        }
       }
     });
   }

@@ -10,8 +10,6 @@ import Preview from "./parts/Preview.js";
 import List from "./parts/List.js";
 import Modal from "./parts/Modal.js";
 
-// import { Apps, Games, Images } from "./database.js";
-
 import "./index.scss";
 
 const classNames = require("classnames");

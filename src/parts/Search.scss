@@ -1,10 +1,10 @@
 @import "../variables.scss";
 
 .ps5-search {
-  width: 600px;
-  height: 400px;
+  width: 400px;
+  // height: 400px;
   max-width: 100%;
-  max-height: 100%;
+  // max-height: 100%;
   padding: $margin-x;
   // padding-inline: $margin-x;
   // display: flex;
@@ -13,7 +13,8 @@
   // align-items: center;
 
   input {
-    padding-inline: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     display: block;
     margin-bottom: 2rem;
   }
@@ -22,5 +23,9 @@
     div {
       display: none;
     }
+  }
+
+  .ps5-list {
+    grid-template-columns: 1fr 1fr 1fr !important;
   }
 }

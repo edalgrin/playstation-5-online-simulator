@@ -27,7 +27,10 @@ class List extends Component {
                   hover="min"
                   onClick={() =>
                     gallery
-                      ? this.props.onClickModal(item.modal)
+                      ? this.props.onClickModal({
+                          type: "image",
+                          element: item.cover,
+                        })
                       : this.props.onClickMenu({
                           apps: [item],
                           top: undefined,

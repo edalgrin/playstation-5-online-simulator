@@ -16,12 +16,17 @@ class Preview extends Component {
 
           {item.text && <p>{item.text}</p>}
 
-          {item.modal && (
+          {item.youtube && (
             <div className="ps5-btn-group">
               <a
                 href="#play"
                 className="ps5-btn ps5-btn-lg ps5-btn-primary"
-                onClick={() => this.props.onClick(item.modal)}
+                onClick={() =>
+                  this.props.onClick({
+                    type: "youtube",
+                    element: item.youtube,
+                  })
+                }
               >
                 Play
               </a>

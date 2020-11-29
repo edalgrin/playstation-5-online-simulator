@@ -157,19 +157,22 @@ p {
 }
 
 .ps5-container {
-  padding-inline: 2rem;
-  // scroll-snap-align: start;
+  padding-left: 2rem;
+  padding-right: 2rem;
 
   @media (min-width: 768px) {
-    padding-inline: $margin-x;
+    padding-left: $margin-x;
+    padding-right: $margin-x;
   }
 
   @media (min-width: 992px) {
-    padding-inline: (2 * $margin-x);
+    padding-left: (2 * $margin-x);
+    padding-right: (2 * $margin-x);
   }
 
   @media (min-width: 992px) {
-    margin-inline: auto;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 1200px;
   }
 }

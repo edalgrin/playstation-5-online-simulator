@@ -19,19 +19,22 @@
       transition: opacity $animation-time $animation-ease;
       opacity: 0;
       will-change: opacity;
+      font-weight: 300;
+      bottom: initial;
+      top: 100%;
+      left: -10%;
+      width: 250px;
+
+      @media (min-width: 576px) {
+        top: 55%;
+        width: auto;
+        left: 100%;
+        white-space: nowrap;
+      }
 
       span,
       p {
         display: none;
-      }
-
-      h3 {
-        position: absolute;
-        bottom: 1.2rem;
-        left: calc(100% + 0.7rem);
-        white-space: nowrap;
-        font-weight: 300;
-        font-size: 1.5rem;
       }
     }
 

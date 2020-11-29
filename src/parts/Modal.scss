@@ -7,6 +7,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(black, 0.3);
+  backdrop-filter: blur(2px);
   display: none;
   justify-content: center;
   align-items: center;
@@ -15,6 +16,7 @@
     position: relative;
     max-width: 100%;
     max-height: 100%;
+    overflow-y: auto;
     background: linear-gradient(45deg, #2d2e33, #191a22);
     border-radius: 5px;
     box-shadow: 5px 0 15px black;
@@ -24,17 +26,29 @@
       margin-top: 0;
     }
 
+    .ps5-btn-group {
+      margin-bottom: 1.5rem;
+
+      img {
+        width: 25px;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
     .ps5-modal-dialog {
-      width: 600px;
-      height: 400px;
-      max-width: 100%;
-      max-height: 100%;
+      width: 400px;
+      // height: 400px;
+      // max-width: 100%;
+      // max-height: 100%;
       padding: $margin-x;
       // display: flex;
       // flex-direction: column;
       // justify-content: center;
       // align-items: center;
-
     }
 
     .ps5-modal-image,
@@ -43,11 +57,11 @@
       height: 100vh;
       max-width: 100%;
       max-height: 100%;
-      padding-block: $margin-x;
+      padding: $margin-x 0;
       box-sizing: border-box;
 
       @media (min-width: 576px) {
-        padding-inline: $margin-x;
+        padding: $margin-x;
       }
 
       iframe {
