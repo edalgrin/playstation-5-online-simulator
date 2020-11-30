@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Canvas from "./Canvas.js";
-// import Canvas from "../CanvasTest.js";
 import "./Home.scss";
 
 class Home extends Component {
@@ -14,7 +13,7 @@ class Home extends Component {
   render() {
     return (
       <div className="ps5-home">
-        <Canvas canvas={this.state.animationStopped} />
+        {!this.state.animationStopped && <Canvas />}
 
         <div>
           <p>Click the button on your screen</p>
@@ -24,8 +23,8 @@ class Home extends Component {
             className="ps5-btn ps5-btn-mono ps5-btn-lg focus"
             onReady={(e) => this.handleReady(e)}
             onClick={() => {
-              this.setState({ canvas: !this.state.animationStopped });
-              // this.props.onClick();
+              // this.setState({ animationStopped: !this.state.animationStopped });
+              this.props.onClick();
             }}
           >
             <i className="material-icons">power_settings_new</i>

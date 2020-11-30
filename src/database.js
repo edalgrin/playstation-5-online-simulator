@@ -64,6 +64,7 @@ export const Games = {
     cover:
       "https://image.api.playstation.com/vulcan/img/rnd/202011/1717/lEQQ9AXMadW1BN8kruQbSy8S.jpg?w=620",
     label: "Demon's Souls",
+    keywords: "dark, miyazaki",
     bg:
       "https://gmedia.playstation.com/is/image/SIEPDC/demons-souls-screenshot-04-disclaimer-en-30sept20?$1600px$",
     tag: "Full Game",
@@ -101,7 +102,7 @@ export const Games = {
       "Raid your enemies, grow your settlement and build your political power in the next chapter of the Assassin’s Creed series.",
     purchase:
       "https://www.playstation.com/en-us/games/assassins-creed-valhalla/",
-    youtube: "nNO1k5NCDOk",
+    youtube: "gnmuEkn30ZE",
   },
   sackboy: {
     cover:
@@ -161,7 +162,7 @@ export const Games = {
       "Hunt for loot and don legendary armor sets in a new looter-slasher for PlayStation 5.",
     purchase:
       "https://www.playstation.com/en-us/games/call-of-duty-black-ops-cold-war/",
-    youtube: "hqLbXmcx7SI",
+    youtube: "Y9M_beKzmjY",
   },
 };
 

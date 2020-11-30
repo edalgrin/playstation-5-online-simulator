@@ -1,141 +1,157 @@
-import React, { useRef, useEffect } from "react";
+import React, { Component } from "react";
 
-const Canvas = (props) => {
-  const canvasRef = useRef();
-  const rafRef = useRef();
-  let canvas;
-  let ctx;
-  let x;
-  let y;
-  let particles = [];
+class Canvas extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      particles: [],
+    };
+    this.updateAnimationState = this.updateAnimationState.bind(this);
+    this.timeLast = Date.now();
 
-  let config = {
-    particleNumber: 1,
-    maxParticleSize: 5,
-    maxSpeed: 1,
-    colorVariation: 10,
-    opacity: 1,
-  };
+    this.particleMaxNumber = 200;
+    this.colorVariation = 10;
+    this.colorParticle = [
+      { r: 254, g: 255, b: 172 },
+      { r: 55, g: 38, b: 39 },
+      { r: 255, g: 255, b: 255 },
+    ];
+  }
 
-  const colorGradientLeft = "#57484c";
-  const colorGradientRight = "#10101c";
-  const colorParticle = [
-    { r: 254, g: 255, b: 172 },
-    { r: 55, g: 38, b: 39 },
-  ];
+  componentDidMount() {
+    this.rAF = requestAnimationFrame(this.updateAnimationState);
+  }
 
-  function bgDraw() {
-    let gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  componentWillUnmount() {
+    cancelAnimationFrame(this.rAF);
+  }
+
+  particleColor(color) {
+    return {
+      r: Math.round(
+        Math.random() * this.colorVariation - this.colorVariation / 2 + color.r
+      ),
+      g: Math.round(
+        Math.random() * this.colorVariation - this.colorVariation / 2 + color.g
+      ),
+      b: Math.round(
+        Math.random() * this.colorVariation - this.colorVariation / 2 + color.b
+      ),
+      a: 0,
+      m: 1,
+      s: Math.random(),
+    };
+  }
+
+  updateAnimationState() {
+    let particlesCurrent = this.state.particles;
+
+    if (particlesCurrent.length > 0) {
+      particlesCurrent = particlesCurrent.filter((p) => {
+        return (
+          p.x > -10 &&
+          p.x < window.innerWidth + 10 &&
+          p.y > -10 &&
+          p.y < window.innerHeight + 10
+        );
+      });
+    }
+
+    if (particlesCurrent.length < this.particleMaxNumber) {
+      const timeCurrent = Date.now();
+      if (timeCurrent - this.timeLast > 50) {
+        particlesCurrent.push({
+          x: Math.round(Math.random() * window.innerWidth),
+          y: Math.round(
+            (Math.random() * window.innerHeight) / 2 + window.innerHeight / 4
+          ),
+          r: Math.ceil(Math.random() * 7),
+          c: this.particleColor(
+            this.colorParticle[
+              Math.floor(Math.random() * this.colorParticle.length)
+            ]
+          ),
+          d: Math.round(Math.random() * 360),
+        });
+        this.timeLast = timeCurrent;
+      }
+    }
+
+    if (particlesCurrent.length > 0) {
+      particlesCurrent.map((p) => {
+        const n = 180 - (p.d + 90);
+        if (p.c.a > 0.9) {
+          p.c.m = -1;
+        } else if (p.c.a < 0.1) {
+          p.c.m = 1;
+        }
+        p.c.a += 0.05 * p.c.m * p.c.s;
+
+        if (p.d > 0 && p.d < 180) {
+          p.x += (Math.sin(p.d) / Math.sin(1)) * 0.1;
+        } else {
+          p.x -= (Math.sin(p.d) / Math.sin(1)) * 0.1;
+        }
+        if (p.d > 90 && p.d < 270) {
+          p.y += (Math.sin(n) / Math.sin(1)) * 0.1;
+        } else {
+          p.y -= (Math.sin(n) / Math.sin(1)) * 0.1;
+        }
+        return p;
+      });
+    }
+
+    this.setState({ particles: particlesCurrent });
+    this.rAF = requestAnimationFrame(this.updateAnimationState);
+    // console.log("update");
+  }
+
+  render() {
+    return <CanvasItem particles={this.state.particles} />;
+  }
+}
+
+class CanvasItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.canvasRef = React.createRef();
+  }
+
+  componentDidUpdate() {
+    const { particles } = this.props;
+
+    const colorGradientLeft = "#57484c";
+    const colorGradientRight = "#10101c";
+
+    const canvas = this.canvasRef.current;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext("2d");
+    const width = canvas.width;
+    const height = canvas.height;
+    ctx.save();
+
+    let gradient = ctx.createLinearGradient(0, 0, width, height);
     gradient.addColorStop(0, colorGradientLeft);
     gradient.addColorStop(1, colorGradientRight);
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }
+    ctx.fillRect(0, 0, width, height);
 
-  function particleColor(color, returnString) {
-    let r, g, b, a, variation;
-    r = Math.round(
-      Math.random() * config.colorVariation -
-        config.colorVariation / 2 +
-        color.r
-    );
-    g = Math.round(
-      Math.random() * config.colorVariation -
-        config.colorVariation / 2 +
-        color.g
-    );
-    b = Math.round(
-      Math.random() * config.colorVariation -
-        config.colorVariation / 2 +
-        color.b
-    );
-    a = Math.random() + 0.5;
-    if (returnString) {
-      return "rgba(" + r + "," + g + "," + b + "," + a + ")";
-    } else {
-      return { r, g, b, a };
-    }
-  }
-
-  function particleDefine(x, y) {
-    this.x = x || Math.round(Math.random() * canvas.width);
-    this.y = y || Math.round(Math.random() * canvas.height);
-    this.r = Math.ceil(Math.random() * config.maxParticleSize);
-    this.c = particleColor(
-      colorParticle[Math.floor(Math.random() * colorParticle.length)],
-      true
-    );
-    this.s = Math.pow(Math.ceil(Math.random() * config.maxSpeed), 0.7);
-    this.d = Math.round(Math.random() * 360);
-  }
-
-  function particleUpdate(p) {
-    console.log("particleUpdate");
-    var a = 180 - (p.d + 90);
-    p.d > 0 && p.d < 180
-      ? (p.x += (p.s * Math.sin(p.d)) / Math.sin(p.s))
-      : (p.x -= (p.s * Math.sin(p.d)) / Math.sin(p.s));
-    p.d > 90 && p.d < 270
-      ? (p.y += (p.s * Math.sin(a)) / Math.sin(p.s))
-      : (p.y -= (p.s * Math.sin(a)) / Math.sin(p.s));
-    return p;
-  }
-
-  function particleCleanAll() {
-    particles = particles.filter((p) => {
-      return (
-        p.x > -100 &&
-        p.x < canvas.width + 100 &&
-        p.y > -100 &&
-        p.y < canvas.height + 100
-      );
-    });
-  }
-
-  function particleDraw(x, y, r, c) {
-    ctx.beginPath();
-    ctx.fillStyle = c;
-    ctx.arc(x, y, r, 0, 2 * Math.PI, false);
-    ctx.fill();
-    ctx.closePath();
-  }
-
-  function particleAdd(n) {
-    for (let i = 0; i <= n; i++) {
-      particles.push(new particleDefine(x, y));
-    }
-  }
-
-  function particleAnimate() {
-    particleCleanAll();
-    if (particles.length < 100) {
-      particleAdd(1);
-    }
-    bgDraw();
     particles.map((p) => {
-      particleUpdate(p);
-      particleDraw(p.x, p.y, p.r, p.c);
+      ctx.beginPath();
+      ctx.fillStyle =
+        "rgba(" + p.c.r + "," + p.c.g + "," + p.c.b + "," + p.c.a + ")";
+      ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI, false);
+      ctx.fill();
+      ctx.closePath();
     });
-    rafRef.current = requestAnimationFrame(particleAnimate);
+
+    ctx.restore();
   }
 
-  useEffect(() => {
-    canvas = canvasRef.current;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    ctx = canvas.getContext("2d");
-
-    rafRef.current = requestAnimationFrame(particleAnimate);
-
-    return () => {
-      if (rafRef.current && props.animationStopped) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, [props.animationStopped]);
-
-  return <canvas ref={canvasRef} {...props} />;
-};
+  render() {
+    return <canvas ref={this.canvasRef}></canvas>;
+  }
+}
 
 export default Canvas;
