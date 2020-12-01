@@ -24,4 +24,23 @@
       }
     }
   }
+
+  &.ps5-list-extend {
+    .ps5-disk {
+      &:before {
+        padding-bottom: 150%;
+        background-size: 100% 80%;
+      }
+
+      &.ps5-disk-locked {
+        filter: grayscale(100%);
+        transition: filter $animation-time $animation-ease;
+
+        &:hover,
+        &:focus {
+          filter: grayscale(0%);
+        }
+      }
+    }
+  }
 }

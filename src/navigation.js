@@ -1,5 +1,5 @@
 import React from "react";
-import { Apps, Games, Images } from "./database.js";
+import { Apps, Games, Images, Activities } from "./database.js";
 
 const GamesAll = Object.values(Games);
 
@@ -18,8 +18,25 @@ export const menuPrimary = [
           },
           {
             type: "games",
-            title: "More like this",
-            items: [Games.spider, Games.astro, Games.astro],
+            title: "Coming Soon",
+            items: [
+              Games.horizon,
+              Games.cyberpunk,
+              Games.gt,
+              Games.ff,
+              Games.ratchet,
+            ],
+          },
+          {
+            type: "games",
+            title: "Popular",
+            items: [
+              Games.watch,
+              Games.tlou,
+              Games.fortnite,
+              Games.death,
+              Games.cod,
+            ],
           },
         ],
       },
@@ -34,7 +51,13 @@ export const menuPrimary = [
           {
             type: "games",
             title: "More like this",
-            items: [Games.spider, Games.astro, Games.astro],
+            items: [
+              Games.watch,
+              Games.demon,
+              Games.horizon,
+              Games.god,
+              Games.death,
+            ],
           },
         ],
       },
@@ -42,14 +65,14 @@ export const menuPrimary = [
         app: Games.demon,
         lists: [
           {
+            type: "activities",
+            title: "Activities",
+            items: Activities.demon,
+          },
+          {
             type: "gallery",
             title: "Media",
             items: Images.demon,
-          },
-          {
-            type: "games",
-            title: "More like this",
-            items: [Games.spider, Games.astro, Games.astro],
           },
         ],
       },
@@ -71,11 +94,6 @@ export const menuPrimary = [
             title: "Media",
             items: Images.god,
           },
-          {
-            type: "games",
-            title: "More like this",
-            items: [Games.spider, Games.astro, Games.astro],
-          },
         ],
       },
       {
@@ -86,11 +104,6 @@ export const menuPrimary = [
             title: "Media",
             items: Images.astro,
           },
-          {
-            type: "games",
-            title: "More like this",
-            items: [Games.spider, Games.astro, Games.astro],
-          },
         ],
       },
       {
@@ -100,11 +113,6 @@ export const menuPrimary = [
             type: "gallery",
             title: "Media",
             items: Images.sackboy,
-          },
-          {
-            type: "games",
-            title: "More like this",
-            items: [Games.spider, Games.astro, Games.astro],
           },
         ],
       },

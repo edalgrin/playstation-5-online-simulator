@@ -18,7 +18,7 @@ class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      home: true,
+      home: !true,
       top: undefined,
       apps: undefined,
       appSelected: undefined,
@@ -96,7 +96,7 @@ class Page extends Component {
 
     return (
       <>
-        <CSSTransition in={!this.state.home} timeout={1800} unmountOnExit>
+        <CSSTransition in={!this.state.home} timeout={1800}>
           <div
             className={classNames("ps5-page", {
               "ps5-page-scroll": this.state.scrolled,

@@ -9,6 +9,7 @@ class List extends Component {
 
     return list.map((item, i) => {
       const gallery = item.type === "gallery";
+      const activities = item.type === "activities";
 
       return (
         <div className="ps5-lists" key={i}>
@@ -17,6 +18,7 @@ class List extends Component {
           <div
             className={classNames("ps5-list", {
               "ps5-list-shrink": gallery,
+              "ps5-list-extend": activities,
             })}
           >
             {item.items.map((item, i) => {
@@ -24,13 +26,16 @@ class List extends Component {
                 <Disk
                   key={i}
                   item={item}
-                  hover="min"
+                  className={item.tag === "Locked" ? "ps5-disk-locked" : ""}
+                  hover={activities ? "" : "min"}
                   onClick={() =>
                     gallery
                       ? this.props.onClickModal({
                           type: "image",
                           element: item.cover,
                         })
+                      : activities
+                      ? {}
                       : this.props.onClickMenu({
                           apps: [item],
                           top: undefined,
