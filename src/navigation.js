@@ -1,7 +1,4 @@
-import React from "react";
 import { Apps, Games, Images, Activities } from "./database.js";
-
-const GamesAll = Object.values(Games);
 
 export const menuPrimary = [
   {
@@ -82,7 +79,7 @@ export const menuPrimary = [
           {
             type: "games",
             title: "All the games",
-            items: GamesAll,
+            items: Object.values(Games),
           },
         ],
       },

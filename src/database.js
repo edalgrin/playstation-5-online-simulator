@@ -1,5 +1,3 @@
-import React from "react";
-
 import coverStore from "./assets/cover-store.png";
 import coverExplore from "./assets/cover-explore.png";
 import coverNetflix from "./assets/cover-netflix.png";
@@ -160,8 +158,7 @@ export const Games = {
     title: "Godfall",
     text:
       "Hunt for loot and don legendary armor sets in a new looter-slasher for PlayStation 5.",
-    purchase:
-      "https://www.playstation.com/en-us/games/godfall/",
+    purchase: "https://www.playstation.com/en-us/games/godfall/",
     youtube: "Y9M_beKzmjY",
   },
   cyberpunk: {
@@ -484,19 +481,22 @@ export const Activities = {
       price: "57%",
     },
     {
-      cover: "https://gmedia.playstation.com/is/image/SIEPDC/demons-souls-screenshot-15-disclaimer-en-09nov20?$1600px$",
+      cover:
+        "https://gmedia.playstation.com/is/image/SIEPDC/demons-souls-screenshot-15-disclaimer-en-09nov20?$1600px$",
       tag: "In Progress",
       label: "Fire Knight",
       price: "32%",
     },
     {
-      cover: "https://gmedia.playstation.com/is/image/SIEPDC/demons-souls-screenshot-13-disclaimer-en-28oct20?$1600px$",
+      cover:
+        "https://gmedia.playstation.com/is/image/SIEPDC/demons-souls-screenshot-13-disclaimer-en-28oct20?$1600px$",
       tag: "In Progress",
       label: "Blood Knight",
       price: "61%",
     },
     {
-      cover: "https://gmedia.playstation.com/is/image/SIEPDC/demons-souls-armored-spider-screenshot-ps5-en-15oct20?$1600px$",
+      cover:
+        "https://gmedia.playstation.com/is/image/SIEPDC/demons-souls-armored-spider-screenshot-ps5-en-15oct20?$1600px$",
       tag: "Locked",
       label: "Demon Slayer",
       price: "0%",

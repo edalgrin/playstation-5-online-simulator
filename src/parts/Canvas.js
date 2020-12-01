@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Canvas extends React.Component {
+class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -111,7 +111,7 @@ class Canvas extends React.Component {
   }
 }
 
-class CanvasItem extends React.Component {
+class CanvasItem extends Component {
   constructor(props) {
     super(props);
     this.canvasRef = React.createRef();
@@ -137,7 +137,7 @@ class CanvasItem extends React.Component {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
-    particles.map((p) => {
+    particles.forEach((p) => {
       ctx.beginPath();
       ctx.fillStyle =
         "rgba(" + p.c.r + "," + p.c.g + "," + p.c.b + "," + p.c.a + ")";

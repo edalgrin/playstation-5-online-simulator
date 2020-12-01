@@ -21,7 +21,7 @@ class Search extends Component {
 
     if (input !== "" && input.length > 1) {
       result = [];
-      Object.values(Games).map((item, i) => {
+      Object.values(Games).forEach((item, i) => {
         if (item) {
           let label = item.label;
           let keywords = item.keywords;

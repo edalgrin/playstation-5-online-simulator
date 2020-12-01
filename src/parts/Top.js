@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import Search from "./Search.js";
 import Social from "./Social.js";
 import "./Top.scss";
@@ -44,7 +44,7 @@ class Top extends Component {
       let apps = [];
       let lists = [];
 
-      content.map((item, i) => {
+      content.forEach((item, i) => {
         let app = item.app;
         let list = item.lists;
         if (app) {

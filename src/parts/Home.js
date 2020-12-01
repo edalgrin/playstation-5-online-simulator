@@ -37,7 +37,7 @@ class Home extends Component {
             <div>
               <p>This website is a study project about</p>
               <p>PlayStation 5 User Experience</p>
-              <p>All the texts, media and contents belong to them</p>
+              <p>All the texts, images and links belong to them</p>
             </div>
 
             <a

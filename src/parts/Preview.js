@@ -5,7 +5,6 @@ import "./Preview.scss";
 class Preview extends Component {
   render() {
     const item = this.props.app;
-    const price = item.price;
 
     return (
       <div className="ps5-preview ps5-animate-from-bottom" key={item.label}>

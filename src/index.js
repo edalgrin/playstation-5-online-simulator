@@ -87,16 +87,16 @@ class Page extends Component {
     const lists = this.state.lists;
     let app = false;
     let list = false;
-    if (apps != undefined) {
+    if (apps !== undefined) {
       app = apps[appSelected];
     }
-    if (lists != undefined) {
+    if (lists !== undefined) {
       list = lists[appSelected];
     }
 
     return (
       <>
-        <CSSTransition in={!this.state.home} timeout={1800}>
+        <CSSTransition in={!this.state.home} timeout={2000}>
           <div
             className={classNames("ps5-page", {
               "ps5-page-scroll": this.state.scrolled,
@@ -129,16 +129,14 @@ class Page extends Component {
             </div>
 
             {list && (
-              <div
-                className="ps5-content"
-                key={appSelected}
-                >
+              <div className="ps5-content" key={appSelected}>
                 <div className="ps5-container ps5-animate-from-bottom">
-                <List
-                  list={list}
-                  onClickMenu={(e) => this.navUpdate(e)}
-                  onClickModal={(e) => this.modalOpen(e)}
-                /></div>
+                  <List
+                    list={list}
+                    onClickMenu={(e) => this.navUpdate(e)}
+                    onClickModal={(e) => this.modalOpen(e)}
+                  />
+                </div>
               </div>
             )}
           </div>
