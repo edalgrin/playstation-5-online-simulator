@@ -19,7 +19,7 @@
     bottom: 0;
   }
 
-  div {
+  > div {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,11 @@
     gap: 5rem;
   }
 
-  .ps5-btn {
+  p {
+    text-align: center;
+  }
+
+  .ps5-btn-mono {
     animation-duration: 3s;
     animation-name: animation-shrink;
     animation-iteration-count: infinite;

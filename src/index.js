@@ -18,7 +18,7 @@ class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      home: !true,
+      home: true,
       top: undefined,
       apps: undefined,
       appSelected: undefined,
