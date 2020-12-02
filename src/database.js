@@ -263,7 +263,7 @@ export const Games = {
   },
   fortnite: {
     cover: "https://i.ytimg.com/vi/dmi_fzJuFhU/maxresdefault.jpg",
-    label: "Watch Dogs Legion",
+    label: "Fortnite",
     bg:
       "https://gmedia.playstation.com/is/image/SIEPDC/fortnite-chapter-2-season-4-screen-09-ps4-en-04sep20?$1600px$",
     tag: "Full Game",

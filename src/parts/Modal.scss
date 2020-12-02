@@ -41,15 +41,25 @@
 
     .ps5-modal-dialog {
       width: 400px;
-      // height: 400px;
-      // max-width: 100%;
-      // max-height: 100%;
+      max-width: 100%;
       padding: $margin-x;
-      // display: flex;
-      // flex-direction: column;
-      // justify-content: center;
-      // align-items: center;
     }
+
+    // .ps5-modal-settings{
+    //   position: fixed;
+    //   right: 0;
+    //   top: 0;
+    //   bottom: 0;
+    //   width: 300px;
+    //   background: inherit;
+    //   padding: 2rem;
+
+    //   + .ps5-btn {
+    //     position: fixed;
+    //     right: 1rem;
+    //     top: 1rem;
+    //   }
+    // }
 
     .ps5-modal-image,
     .ps5-modal-video {
@@ -68,17 +78,6 @@
         box-shadow: 5px 0 15px black;
       }
     }
-
-    // .ps5-modal-video {
-    //   &:after {
-    //     content: "";
-    //     position: absolute;
-    //     left: 0;
-    //     top: 0;
-    //     right: 0;
-    //     bottom: 0;
-    //   }
-    // }
 
     .ps5-modal-image {
       background-size: contain;

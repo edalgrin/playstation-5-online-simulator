@@ -13,7 +13,7 @@ const Social = () => {
       <h2>Hi!</h2>
       <p>
         My name is Eduardo Allegrini, I'm a Frontend Developer and this website
-        is a side project I made as a study of Playstation 5 UX
+        is a side project I made as a study of PlayStation 5 UX
       </p>
       <p>
         I would really appreciate it if you could share this page through your

@@ -1,17 +1,6 @@
 @import "../variables.scss";
 
-.ps5-search {
-  width: 400px;
-  // height: 400px;
-  max-width: 100%;
-  // max-height: 100%;
-  padding: $margin-x;
-  // padding-inline: $margin-x;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
-
+.ps5-modal-dialog {
   input {
     padding-left: 1rem;
     padding-right: 1rem;

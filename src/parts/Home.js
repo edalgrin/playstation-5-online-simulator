@@ -42,7 +42,7 @@ class Home extends Component {
 
             <a
               href="#next"
-              className="ps5-btn ps5-btn-primary focus"
+              className="ps5-btn ps5-btn-primary"
               onClick={() => this.setState({ animation: true })}
             >
               Continue

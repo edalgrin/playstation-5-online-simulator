@@ -34,7 +34,7 @@ class Search extends Component {
       });
     }
     return (
-      <div className="ps5-search">
+      <div className="ps5-modal-dialog">
         <h2>Search</h2>
 
         <input

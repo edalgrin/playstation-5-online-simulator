@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Search from "./Search.js";
 import Social from "./Social.js";
+import Settings from "./Settings.js";
 import "./Top.scss";
 import { menuPrimary } from "../navigation.js";
 
@@ -83,11 +84,7 @@ class Top extends Component {
         label: "settings",
         url: "#settings",
         content: <i className="material-icons">settings</i>,
-        modalContent: (
-          <div className="ps5-modal-dialog">
-            <h2>Settings</h2>
-          </div>
-        ),
+        modalContent: <Settings />,
       },
       {
         label: "user",
@@ -139,9 +136,9 @@ class Top extends Component {
                   className={
                     clock ? "ps5-top-btn active" : "ps5-btn ps5-btn-mono"
                   }
-                  onClick={() => {
-                    this.props.onClickModal(item.modalContent);
-                  }}
+                  onClick={() =>
+                    !clock ? this.props.onClickModal(item.modalContent) : {}
+                  }
                 >
                   {clock ? this.state.time : item.content}
                 </a>

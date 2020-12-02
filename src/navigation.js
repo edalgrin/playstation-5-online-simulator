@@ -119,7 +119,7 @@ export const menuPrimary = [
           {
             type: "games",
             title: "Deals",
-            items: [Games.spider],
+            items: [Games.death, Games.spider, Games.sackboy],
           },
         ],
       },
