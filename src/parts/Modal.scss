@@ -40,9 +40,13 @@
     }
 
     .ps5-modal-dialog {
-      width: 400px;
-      max-width: 100%;
-      padding: $margin-x;
+      width: 100vw;
+      max-width: 400px;
+      padding: $margin-x/2;
+      
+      @media (min-width: 576px) {
+        padding: $margin-x;
+      }
     }
 
     // .ps5-modal-settings{
