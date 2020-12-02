@@ -35,7 +35,7 @@ const Social = () => {
           rel="noopener noreferrer"
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
-          href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=http%3A%2F%2Feduardoallegrini.com%2F&display=popup&ref=plugin&src=share_button"
+          href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=http%3A%2F%2Fprojects.eduardoallegrini.com/playstation-5-online-simulator%2F&display=popup&ref=plugin&src=share_button"
         >
           <IconFacebook />
         </a>
@@ -46,7 +46,7 @@ const Social = () => {
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
           //   href="http://www.linkedin.com/shareArticle?mini=true&url=http://eduardoallegrini.com&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com"
-          href="http://www.linkedin.com/shareArticle?mini=true&url=http://eduardoallegrini.com"
+          href="http://www.linkedin.com/shareArticle?mini=true&url=http://projects.eduardoallegrini.com/playstation-5-online-simulator"
         >
           <IconLinkedin />
         </a>
