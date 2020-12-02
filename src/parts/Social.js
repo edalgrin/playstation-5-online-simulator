@@ -22,7 +22,7 @@ const Social = () => {
       <div className="ps5-btn-group">
         <a
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
           href="https://twitter.com/intent/retweet?tweet_id=1331341295667851268"
@@ -32,7 +32,7 @@ const Social = () => {
 
         <a
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
           href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=http%3A%2F%2Fprojects.eduardoallegrini.com/playstation-5-online-simulator%2F&display=popup&ref=plugin&src=share_button"
@@ -42,7 +42,7 @@ const Social = () => {
 
         <a
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
           //   href="http://www.linkedin.com/shareArticle?mini=true&url=http://eduardoallegrini.com&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com"
@@ -54,7 +54,7 @@ const Social = () => {
         <a
           href="http://eduardoallegrini.com/#active"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           title="Website"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >
@@ -66,7 +66,7 @@ const Social = () => {
       {/* <a
           href="https://twitter.com/intent/follow?screen_name=edalgrin&tw_p=followbutton"
           target="_blank"
-          //   rel="noopener noreferrer"
+          //   rel="noopener"
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >
@@ -76,7 +76,7 @@ const Social = () => {
       {/* <a
           href="https://codepen.io/edalgrin"
           target="_blank"
-        //   rel="noopener noreferrer"
+        //   rel="noopener"
           title="Codepen"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >
@@ -86,7 +86,7 @@ const Social = () => {
         <a
           href="https://github.com/edalgrin"
           target="_blank"
-        //   rel="noopener noreferrer"
+        //   rel="noopener"
           title="Github"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >
@@ -96,7 +96,7 @@ const Social = () => {
         <a
           href="https://linkedin.com/in/edalgrin/"
           target="_blank"
-        //   rel="noopener noreferrer"
+        //   rel="noopener"
           title="Linkedin"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >
@@ -106,7 +106,7 @@ const Social = () => {
         <a
           href="https://youtube.com/channel/UCkz8V_-rSVY19BcXk-gQRuA/featured"
           target="_blank"
-        //   rel="noopener noreferrer"
+        //   rel="noopener"
           title="Youtube"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >
@@ -116,7 +116,7 @@ const Social = () => {
         <a
           href="https://medium.com/@edalgrin"
           target="_blank"
-        //   rel="noopener noreferrer"
+        //   rel="noopener"
           title="Medium"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >

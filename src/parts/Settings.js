@@ -19,7 +19,7 @@ const Settings = () => {
         <a
           href="https://twitter.com/intent/follow?screen_name=edalgrin&tw_p=followbutton"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >
