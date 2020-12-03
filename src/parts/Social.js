@@ -25,7 +25,8 @@ const Social = () => {
           rel="noopener"
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
-          href="https://twitter.com/intent/retweet?tweet_id=1331341295667851268"
+          // href="https://twitter.com/intent/retweet?tweet_id=placeholder"
+          href="https://twitter.com/intent/follow?screen_name=edalgrin&tw_p=followbutton"
         >
           <IconTwitter />
         </a>
@@ -33,9 +34,9 @@ const Social = () => {
         <a
           target="_blank"
           rel="noopener"
-          title="Twitter"
+          title="Facebook"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
-          href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=http%3A%2F%2Fprojects.eduardoallegrini.com/playstation-5-online-simulator%2F&display=popup&ref=plugin&src=share_button"
+          href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https://ps5.edalgrin.com/&display=popup&ref=plugin&src=share_button"
         >
           <IconFacebook />
         </a>
@@ -43,10 +44,9 @@ const Social = () => {
         <a
           target="_blank"
           rel="noopener"
-          title="Twitter"
+          title="Linkedin"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
-          //   href="http://www.linkedin.com/shareArticle?mini=true&url=http://eduardoallegrini.com&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com"
-          href="http://www.linkedin.com/shareArticle?mini=true&url=http://projects.eduardoallegrini.com/playstation-5-online-simulator"
+          href="https://www.linkedin.com/shareArticle?mini=true&url=https://ps5.edalgrin.com/&title=Playstaion%205%20Online%20Simulator&summary=This%20Swebsite%20Sis%20Sa%20Sstudy%20Sproject%20Sabout%20SPlayStation%20S5%20SUser%20SExperience"
         >
           <IconLinkedin />
         </a>
@@ -58,7 +58,7 @@ const Social = () => {
           title="Website"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
         >
-          <img src="http://eduardoallegrini.com/logo192.png" alt="" />
+          <img src="https://edalgrin.com/logo192.png" alt="" />
         </a>
       </div>
       <h2>Thank you! 💙</h2>
