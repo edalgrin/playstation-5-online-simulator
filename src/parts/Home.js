@@ -36,7 +36,17 @@ class Home extends Component {
           <div>
             <div>
               <p>This website is a study project about</p>
-              <p>PlayStation 5 User Experience</p>
+              <p>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ps5-link"
+                  href="http://playstation.com/"
+                >
+                  PlayStation
+                </a>{" "}
+                5 User Experience
+              </p>
               <p>All the texts, images and links belong to them</p>
             </div>
 

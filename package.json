@@ -1,6 +1,6 @@
 {
   "homepage": ".",
-  "name": "ps5-user-interface",
+  "name": "playstation-5-online-simulator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

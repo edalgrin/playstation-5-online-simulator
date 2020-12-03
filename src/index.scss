@@ -139,6 +139,22 @@ p {
   }
 }
 
+.ps5-link {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    border-bottom: 1px solid;
+  }
+
+  &:after {
+    content: none;
+  }
+}
+
 .ps5-animate-from-bottom {
   animation-name: animation-from-bottom;
   animation-duration: $animation-time;
