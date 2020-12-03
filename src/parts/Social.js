@@ -52,7 +52,7 @@ const Social = () => {
         </a>
 
         <a
-          href="http://eduardoallegrini.com/#active"
+          href="https://edalgrin.com/#active"
           target="_blank"
           rel="noopener"
           title="Website"

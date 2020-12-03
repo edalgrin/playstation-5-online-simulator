@@ -89,7 +89,7 @@ class Top extends Component {
       {
         label: "user",
         url: "#user",
-        content: <img src="http://eduardoallegrini.com/logo192.png" alt="" />,
+        content: <img src="https://edalgrin.com/logo192.png" alt="" />,
         modalContent: <Social />,
       },
       {
