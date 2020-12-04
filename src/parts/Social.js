@@ -25,8 +25,8 @@ const Social = () => {
           rel="noopener"
           title="Twitter"
           className="ps5-btn ps5-btn-lg ps5-btn-mono ps5-btn-primary"
-          // href="https://twitter.com/intent/retweet?tweet_id=placeholder"
-          href="https://twitter.com/intent/follow?screen_name=edalgrin&tw_p=followbutton"
+          href="https://twitter.com/intent/retweet?tweet_id=1334921677340372998"
+          // href="https://twitter.com/intent/follow?screen_name=edalgrin&tw_p=followbutton"
         >
           <IconTwitter />
         </a>
