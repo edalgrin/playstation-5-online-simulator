@@ -133,18 +133,25 @@
 
 .ps5-cpanel {
   position: absolute;
+  z-index: 1;
   right: 0;
   top: 0;
   bottom: 0;
-  padding: 2rem;
-  width: 300px;
+  padding: 1rem;
+  width: 320px;
   max-width: 100%;
+  box-sizing: border-box;
   overflow-y: auto;
   background: linear-gradient(45deg, #2d2e33, #191a22);
   box-shadow: -5px 0 15px black;
   transform: translateX(100%);
   transition: transform $animation-time $animation-ease;
   will-change: transform;
+
+  @media (min-width: 576px) {
+    padding: 2rem;
+    width: 360px;
+  }
 
   &.active {
     transform: translateX(0);
@@ -194,6 +201,7 @@
 
 .ps5-cpanel-btn {
   position: absolute;
+  z-index: 2;
   top: 1rem;
   right: 1rem;
 }
