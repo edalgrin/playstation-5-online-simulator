@@ -27,6 +27,7 @@ class Page extends Component {
       modal: false,
       modalContent: "",
       scrolled: false,
+      settings: false,
     };
     this.keydownFunction = this.keydownFunction.bind(this);
     this.scrollFunction = this.scrollFunction.bind(this);
@@ -81,6 +82,13 @@ class Page extends Component {
     this.modalClose();
   }
 
+  settingsOpen() {
+    this.setState({
+      home: true,
+      settings: true,
+    });
+  }
+
   render() {
     const apps = this.state.apps;
     const appSelected = this.state.appSelected;
@@ -114,6 +122,7 @@ class Page extends Component {
                   top={this.state.top}
                   onClickMenu={(e) => this.navUpdate(e)}
                   onClickModal={(e) => this.modalOpen(e)}
+                  onClickSettings={() => this.settingsOpen()}
                 />
 
                 <Menu
@@ -143,7 +152,10 @@ class Page extends Component {
         </CSSTransition>
 
         <CSSTransition in={this.state.home} timeout={1000} unmountOnExit>
-          <Home onClick={() => this.setState({ home: false })} />
+          <Home
+            onClick={() => this.setState({ home: false })}
+            settings={this.state.settings}
+          />
         </CSSTransition>
 
         <CSSTransition in={this.state.modal} timeout={400}>

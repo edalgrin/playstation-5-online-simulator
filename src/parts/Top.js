@@ -17,7 +17,7 @@ class Top extends Component {
   }
 
   componentDidMount() {
-    this.handleClick(0);
+    this.handleClickLeft(0);
     this.tick();
     this.clock = setInterval(() => this.tick(), 60000);
   }
@@ -38,7 +38,7 @@ class Top extends Component {
     });
   }
 
-  handleClick(current) {
+  handleClickLeft(current) {
     const content = menuPrimary[current].content;
 
     if (content) {
@@ -72,6 +72,14 @@ class Top extends Component {
     }
   }
 
+  handleClickRight(type, modalContent) {
+    if (type === "settings") {
+      this.props.onClickSettings();
+    } else if (type !== "clock") {
+      this.props.onClickModal(modalContent);
+    }
+  }
+
   render() {
     const menuSecondary = [
       {
@@ -84,7 +92,7 @@ class Top extends Component {
         label: "settings",
         url: "#settings",
         content: <i className="material-icons">settings</i>,
-        modalContent: <Settings />,
+        modalContent: undefined,
       },
       {
         label: "user",
@@ -115,7 +123,7 @@ class Top extends Component {
                   className={classNames("ps5-top-btn", {
                     active: this.props.top === i,
                   })}
-                  onClick={() => this.handleClick(i)}
+                  onClick={() => this.handleClickLeft(i)}
                 >
                   {item.label}
                 </a>
@@ -126,7 +134,7 @@ class Top extends Component {
 
         <ul>
           {menuSecondary.map((item, i) => {
-            let clock = item.content === "clock";
+            const clock = item.label === "clock";
 
             return (
               <li key={i}>
@@ -137,7 +145,7 @@ class Top extends Component {
                     clock ? "ps5-top-btn active" : "ps5-btn ps5-btn-mono"
                   }
                   onClick={() =>
-                    !clock ? this.props.onClickModal(item.modalContent) : {}
+                    this.handleClickRight(item.label, item.modalContent)
                   }
                 >
                   {clock ? this.state.time : item.content}

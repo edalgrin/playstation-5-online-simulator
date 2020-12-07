@@ -38,6 +38,11 @@ p {
   margin-bottom: 1.5rem;
 }
 
+input {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 /**/
 
 .ps5-shine {
@@ -142,7 +147,7 @@ p {
 .ps5-link {
   position: relative;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     right: 0;

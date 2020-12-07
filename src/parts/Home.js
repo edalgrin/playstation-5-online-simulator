@@ -6,7 +6,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animation: false,
+      animation: this.props.settings,
     };
   }
 
@@ -15,14 +15,14 @@ class Home extends Component {
       <div className="ps5-home">
         {this.state.animation ? (
           <>
-            <Canvas />
+            <Canvas settings={this.props.settings} />
 
-            <div>
+            <div className="ps5-home-content">
               <p>Click the button to Start</p>
 
               <a
                 href="#start"
-                className="ps5-btn ps5-btn-mono ps5-btn-lg focus"
+                className="ps5-btn ps5-btn-mono ps5-btn-lg focus ps5-home-btn"
                 onClick={() => this.props.onClick()}
               >
                 <i className="material-icons">power_settings_new</i>
@@ -33,7 +33,7 @@ class Home extends Component {
             </div>
           </>
         ) : (
-          <div>
+          <div className="ps5-home-content">
             <div>
               <p>This website is a study project about</p>
               <p>

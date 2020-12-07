@@ -19,7 +19,7 @@
     bottom: 0;
   }
 
-  > div {
+  .ps5-home-content {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -33,7 +33,7 @@
     text-align: center;
   }
 
-  .ps5-btn-mono {
+  .ps5-home-btn {
     animation-duration: 3s;
     animation-name: animation-shrink;
     animation-iteration-count: infinite;
@@ -112,11 +112,88 @@
       opacity: 0;
     }
 
-    div {
+    > a,
+    > div {
       transition: opacity $animation-time $animation-ease,
         transform $animation-time $animation-ease;
       opacity: 0;
       transform: scale(1.2);
     }
   }
+
+  &.enter {
+    transition: opacity $animation-time $animation-ease;
+    opacity: 0;
+
+    &.enter-active {
+      opacity: 1;
+    }
+  }
+}
+
+.ps5-cpanel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 2rem;
+  width: 300px;
+  max-width: 100%;
+  overflow-y: auto;
+  background: linear-gradient(45deg, #2d2e33, #191a22);
+  box-shadow: -5px 0 15px black;
+  transform: translateX(100%);
+  transition: transform $animation-time $animation-ease;
+  will-change: transform;
+
+  &.active {
+    transform: translateX(0);
+  }
+
+  h3 {
+    font-weight: 100;
+    margin-top: 0;
+  }
+
+  div {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  label {
+    display: inline-flex;
+    width: 47%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  span {
+    font-size: 1rem;
+  }
+
+  input {
+    &[type="color"] {
+      padding: 0;
+      background: none;
+      border: none;
+      width: 40px;
+      height: 43px;
+    }
+
+    &[type="number"] {
+      width: 40px;
+    }
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+.ps5-cpanel-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
